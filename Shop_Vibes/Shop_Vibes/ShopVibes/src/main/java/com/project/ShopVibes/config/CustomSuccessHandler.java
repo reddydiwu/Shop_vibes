@@ -22,10 +22,10 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler{
 		Set<String> roles = AuthorityUtils.authorityListToSet(authentication.getAuthorities());
 		
 		if(roles.contains("ROLE_ADMIN")) {
-			response.sendRedirect("/admin/");
+			response.sendRedirect("/shopvibes/admin/");
 		}
 		else {
-			response.sendRedirect("/user/");
+			response.sendRedirect("/shopvibes/user/");
 		}
 	}
 

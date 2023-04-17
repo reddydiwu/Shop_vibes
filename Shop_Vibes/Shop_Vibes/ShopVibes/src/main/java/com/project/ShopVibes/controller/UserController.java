@@ -18,7 +18,7 @@ import com.project.ShopVibes.model.UserDtls;
 import com.project.ShopVibes.repository.UserRepository;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/shopvibes/user")
 public class UserController {
 
 	@Autowired
@@ -76,7 +76,7 @@ public class UserController {
 
 		}
 		
-		return "redirect:/user/changePassword";
+		return "redirect:/shopvibes/user/changePassword";
 	}
 	
 	
