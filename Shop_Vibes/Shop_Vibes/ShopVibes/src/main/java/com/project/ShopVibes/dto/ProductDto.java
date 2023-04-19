@@ -1,30 +1,25 @@
 package com.project.ShopVibes.dto;
 
-import javax.validation.constraints.NotNull;
-
-import com.project.ShopVibes.model.Category;
-
 public class ProductDto {
 
-	private Integer id;
 	private String productName;
 	private String description;
 	private String imageUrl;
 	private double price;
-	private @NotNull Integer categoryId;
+	private String category;
 	
 	
-	public ProductDto(String productName, String description, String imageUrl, double price,
-			@NotNull Integer categoryId) {
+	
+	public ProductDto() {
+		super();
+	}
+	public ProductDto(String productName, String description, String imageUrl,double price, String category) {
 		super();
 		this.productName = productName;
 		this.description = description;
 		this.imageUrl = imageUrl;
-		this.price = price;
-		this.categoryId = categoryId;
-	}
-	public ProductDto() {
-		super();
+		this.price=price;
+		this.category = category;
 	}
 	public String getProductName() {
 		return productName;
@@ -44,24 +39,18 @@ public class ProductDto {
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
 	}
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
+	}
 	public double getPrice() {
 		return price;
 	}
 	public void setPrice(double price) {
 		this.price = price;
 	}
-	public Integer getCategoryId() {
-		return categoryId;
-	}
-	public void setCategoryId(Integer categoryId) {
-		this.categoryId = categoryId;
-	}
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
+	
 	
 }
-

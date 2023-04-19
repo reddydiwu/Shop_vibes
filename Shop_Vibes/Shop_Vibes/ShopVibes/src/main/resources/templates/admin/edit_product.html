@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Category</title>
+<title>Product</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
 	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
@@ -26,8 +26,8 @@
 		</div>
 	</nav>
 
-<br>
-<br>
+	<br>
+	<br>
 	<!-- Create HTML registration form -->
 	<div class="container">
 		<div class="row">
@@ -35,35 +35,49 @@
 
 				<!-- success message -->
 				<div th:if="${param.success}">
-					<div class="alert alert-info">Category Updated Successfully</div>
+					<div class="alert alert-info">Product Updated Successfully</div>
 				</div>
 
-				<h1>Update Category</h1>
+				<h1>Update Product</h1>
 
-				<form th:action="@{/shopvibes/category/edit/{id} (id=${category.id})}" method="post" th:object="${category}">
+				<form
+					th:action="@{/shopvibes/product/edit/{id} (id=${product.id})}"
+					method="post" th:object="${product}">
 					<div class="form-group">
-						<label class="control-label" for="categoryName"> Category Name </label>
-						<input id="firstName" class="form-control" th:field="*{categoryName}"
-							required autofocus="autofocus" />
-					</div>
-
-					<div class="form-group">
-						<label class="control-label" for="description"> Description </label> <input
-							id="lastName" class="form-control" th:field="*{description}"
-							required autofocus="autofocus" />
+						<label class="control-label" for="productName"> Product
+							Name </label> <input id="productName" class="form-control"
+							th:field="*{productName}" required autofocus="autofocus" />
 					</div>
 
 					<div class="form-group">
 						<label class="control-label" for="imageUrl"> Image Url </label> <input
-							id="email" class="form-control" th:field="*{imageUrl}" required
+							id="imageUrl" class="form-control" th:field="*{imageUrl}"
+							required autofocus="autofocus" />
+					</div>
+					
+					<div class="form-group">
+						<label class="control-label" for="price"> Price </label> <input
+							id="price" class="form-control" th:field="*{price}" required
 							autofocus="autofocus" />
 					</div>
 
-					
 
 					<div class="form-group">
-						<button type="submit" class="btn btn-success">Update Category</button>
-						
+						<label class="control-label" for="description">
+							Description </label> <input id="description" class="form-control"
+							th:field="*{description}" required autofocus="autofocus" />
+					</div>
+
+					<div class="form-group">
+						<label class="control-label" for="category"> CategoryId </label> <input
+							type="text" pattern="[A-Za-z]+" id="category" class="form-control" th:field="*{category}"
+							required autofocus="autofocus"  />
+					</div>
+
+					<div class="form-group">
+						<button type="submit" class="btn btn-success">Update
+							Category</button>
+
 					</div>
 				</form>
 			</div>

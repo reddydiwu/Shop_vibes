@@ -32,4 +32,10 @@ public class UserServiceImpl implements UserService {
 		return userRepo.existsByEmail(email);
 	}
 
+	@Override
+	public UserDtls getUserById(Integer userId) {
+		
+		return userRepo.findById(userId).get();
+	}
+
 }

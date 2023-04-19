@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.project.ShopVibes.model.UserDtls;
-import com.project.ShopVibes.repository.CategoryRepository;
+import com.project.ShopVibes.repository.ProductRepository;
 import com.project.ShopVibes.repository.UserRepository;
 
 @Controller
@@ -25,7 +25,7 @@ public class AdminController {
 	private UserRepository userRepository;
 	
 	@Autowired
-	private CategoryRepository categoryRepository;
+	private ProductRepository productRepository;
 	
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
@@ -42,10 +42,10 @@ public class AdminController {
 		return mav;
 	}
 	
-	@GetMapping("/listofcategories")
+	@GetMapping("/listofproducts")
 	public ModelAndView getAllCategories() {
-		ModelAndView mav = new ModelAndView("admin/listofcategories");
-		mav.addObject("categories", categoryRepository.findAll());
+		ModelAndView mav = new ModelAndView("admin/listofproducts");
+		mav.addObject("products", productRepository.findAll());
 		return mav;
 	}
 	

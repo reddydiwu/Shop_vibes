@@ -13,14 +13,19 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.project.ShopVibes.model.UserDtls;
+import com.project.ShopVibes.repository.ProductRepository;
 import com.project.ShopVibes.repository.UserRepository;
 
 @Controller
 @RequestMapping("/shopvibes/user")
 public class UserController {
 
+	@Autowired
+	private ProductRepository productRepository;
+		
 	@Autowired
 	private UserRepository userRepo;
 
@@ -79,5 +84,17 @@ public class UserController {
 		return "redirect:/shopvibes/user/changePassword";
 	}
 	
+	@GetMapping("/listofproducts")
+	public ModelAndView getAllCategories() {
+		ModelAndView mav = new ModelAndView("user/listofproducts");
+		mav.addObject("products", productRepository.findAll());
+		return mav;
+	}
 	
+	@GetMapping("/addtocart")
+	public ModelAndView addToCart() {
+		ModelAndView mav = new ModelAndView("user/addtocart");
+		mav.addObject("cart", productRepository.findAll());
+		return mav;
+	}
 }
