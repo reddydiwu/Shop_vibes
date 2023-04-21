@@ -43,6 +43,32 @@
 }
  
 </style>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<!-- Add the addToCart function -->
+	<script>
+		function addToCart(productId) {
+		
+		var url = "/shopvibes/user/addToCart/" + productId;
+
+		  $.ajax({
+		    type: "POST",
+		    url: url,
+		    data: { id: productId, quantity: 1 },
+		    success: function(response) {
+		      window.location.href = "/shopvibes/user/home";
+		    },
+		    error: function(error) {
+		      console.log(error);
+		    }
+		  });
+		}
+	</script>
+
+
+
+
 </head>
 <body>
 	<!-- create navigation bar ( header) -->
@@ -57,6 +83,7 @@
 						class="icon-bar"></span>
 				</button>
 				<a class="navbar-brand" href="#" th:href="@{/shopvibes/user/}">Home</a>
+				<a class="navbar-brand" href="#" th:href="@{/shopvibes/user/addtocart}">Cart</a>
 			</div>
 		</div>
 	</nav>
@@ -76,9 +103,18 @@
 				<p th:text="${product.description}"></p>
 				<p th:text="'Price: Rs.' + ${product.price}"></p>
 				<p th:text="'Category: ' + ${product.category}"></p>
-				<a th:href="@{/shopvibes/cart/add/{id}(id=${product.id})}"
-					class="btn btn-primary">Add to Cart</a> <a
-					th:href="@{/shopvibes/order/{id}(id=${product.id})}"
+			 <form th:action="@{/shopvibes/user/addToCart/{id}/{quantity} (id=${product.id},quantity=1)}"
+					method="post" th:object="${cart}">
+					<button type="submit" class="btn btn-primary">Add to Cart</button>
+					</form>
+		<!-- 	 <a  th:onclick="'javascript:addToCart(' + ${product.id} + ');'"
+					class="btn btn-primary" >Add to Cart</a>
+ -->
+			<!-- 	<button class="btn btn-primary text-uppercase" >Add
+					to cart</button>   -->
+
+
+				<a th:href="@{/shopvibes/order/{id}(id=${product.id})}"
 					class="btn btn-danger">Buy Now</a>
 			</div>
 		</div>

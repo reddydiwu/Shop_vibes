@@ -16,7 +16,7 @@
 	margin-bottom: 10px;
 }
 
-.product-grid {
+.cart-grid {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
@@ -56,7 +56,9 @@
 						class="icon-bar"></span>  <span class="icon-bar"></span>  <span
 						class="icon-bar"></span>
 				</button>
+
 				<a class="navbar-brand" href="#" th:href="@{/shopvibes/user/}">Home</a>
+				<a class="navbar-brand" href="#" th:href="@{/shopvibes/user/listofproducts}">Products</a>
 			</div>
 		</div>
 	</nav>
@@ -64,23 +66,22 @@
 	     
 	<br>
 	<br>
-<!-- <div class="container">
+	<div class="container">
 		<div class="row">
-			<h1>List Of Products</h1>
+			<h1>List Of CartItems</h1>
 		</div>
-		<div class="product-grid">
-			<div class="cart" th:each="cart ${cart}">
-				
-				<h3 th:text="${product.productName}"></h3>
-				<p th:text="${product.description}"></p>
-				<p th:text="'Price: Rs.' + ${product.price}"></p>
-				<p th:text="'Category: ' + ${product.category}"></p>
-				<a th:href="@{/shopvibes/cart/add/{id}(id=${product.id})}"
-					class="btn btn-primary">Add to Cart</a> <a
-					th:href="@{/shopvibes/order/{id}(id=${product.id})}"
-					class="btn btn-danger">Buy Now</a>
-			</div>
+		<div class="cart" th:each="cart: ${cart}">
+
+			<img th:src="${cart.product.imageUrl}" alt="Product Image" height=250px
+					width=250px>
+			<p th:text="${cart.product.productName}"></p>
+			<p th:text="${cart.product.description}"></p>
+			<p th:text="${cart.product.price}"></p>
+			<p th:text="${cart.product.category}"></p>
+			<p th:text="${cart.quantity}*${cart.product.price}"></p>
+			
 		</div>
-	</div> -->	
+
+	</div>
 </body>
 </html>

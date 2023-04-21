@@ -122,6 +122,6 @@ public class HomeController {
 		{
 			session.setAttribute("msg", "Password Changed Successfully");
 		}
-		return "redirect:/signin";
+		return "redirect:/shopvibes/signin";
 	}
 }

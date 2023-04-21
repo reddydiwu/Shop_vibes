@@ -9,6 +9,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.session.SessionRegistry;
+import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
@@ -71,14 +73,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.csrf()
 		.disable()
 		.sessionManagement()
-		.maximumSessions(2)
-		.maxSessionsPreventsLogin(false)
-		.expiredUrl("/login?expired");
-
+        .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
+        .maximumSessions(2)
+        .sessionRegistry(sessionRegistry())
+        .and()
+        .invalidSessionUrl("/login?expired")
+        .and()
+    .csrf()
+        .disable();
 	}
 	 @Bean
 	    public HttpSessionEventPublisher httpSessionEventPublisher() {
 	        return new HttpSessionEventPublisher();
 	    }
 
+	 
+	 @Bean
+	 public SessionRegistry sessionRegistry() {
+	     return new SessionRegistryImpl();
+	 }
 }
