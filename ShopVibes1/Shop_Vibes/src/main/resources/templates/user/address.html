@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+</head>
+<body>
+
+<!-- create navigation bar ( header) -->
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#" th:href="@{/shopvibes/user/}">Home</a>
+			</div>
+		</div>
+	</nav>
+
+<br>
+<br>
+
+	<div class="card-body">
+		<form action="address" method="post">
+			<div class="mb-3">
+				<label>Enter Phone number</label> <input type="number" name="phno"
+					class="form-control" required autofocus="autofocus">
+			</div>
+			<div class="mb-3">
+				<label>Enter Street</label> <input type="text" name="street"
+					class="form-control" required autofocus="autofocus">
+			</div>
+
+			<div class="mb-3">
+				<label>Enter City</label> <input type="text" name="city"
+					class="form-control" required autofocus="autofocus">
+			</div>
+
+			<div class="mb-3">
+				<label>Enter State</label> <input type="text" name="state"
+					class="form-control" required autofocus="autofocus">
+			</div>
+			<div class="mb-3">
+				<label>Enter Country</label> <input type="text" name="country"
+					class="form-control" required autofocus="autofocus">
+			</div>
+			<button class="btn btn-primary col-md-12">Add Address</button>
+</body>
+</html>
