@@ -57,6 +57,7 @@ public class UserController {
 	
 	
 	
+	
 	@GetMapping("/")
 	public String home() {
 		return "user/home";
@@ -87,7 +88,7 @@ public class UserController {
 				session.setAttribute("msg", "Password Change success");
 			}else {
 				session.setAttribute("msg", "Something went wrong");
-
+System.out.println("Hello");
 			}
 			
 		}else {
