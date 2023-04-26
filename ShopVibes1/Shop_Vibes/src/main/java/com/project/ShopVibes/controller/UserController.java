@@ -112,4 +112,13 @@ public class UserController {
 		mav.addObject("cart", cartItemRepository.findAll());
 		return mav;
 	}
+	
+	
+//	@GetMapping("/addtocheckout")
+//	public ModelAndView addToCheckout() {
+//		ModelAndView mav = new ModelAndView("user/checkout");
+//		//mav.addObject("cart", productRepository.findAll());
+//		mav.addObject("checkout", cartItemRepository.findAll());
+//		return mav;
+//	}
 }

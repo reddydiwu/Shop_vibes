@@ -11,9 +11,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.project.ShopVibes.repository.CartItemRepository;
+import com.project.ShopVibes.repository.ShoppingCartRepository;
 import com.project.ShopVibes.service.ShoppingCartService;
 
 @Controller
@@ -23,11 +24,16 @@ public class CartController {
 	@Autowired
 	private ShoppingCartService shoppingCartService;
 	
+	@Autowired
+	private ShoppingCartRepository shoppingCartRepository;
+	
+	@Autowired
+	private CartItemRepository cartItemRepository;
+	
 	@PostMapping("/addToCart/{id}/{quantity}")
 	public String addToCart(HttpServletRequest request, Model model, @PathVariable Integer id,
 			@PathVariable int quantity,String sessionToken) {
-		System.out.println(quantity);
-		System.out.println(id);
+		
 		// sessiontToken
 		 sessionToken = (String) request.getSession(true).getAttribute("sessiontToken");
 		if (sessionToken == null) {
@@ -41,6 +47,41 @@ public class CartController {
 		System.out.println("Success");
 		return "redirect:/shopvibes/user/addtocart";
 	}
+	
+	
+	
+	
+//	@PostMapping("/addToCart/{id}/{quantity}")
+//	public String addToCart(HttpServletRequest request, Model model, @PathVariable Integer id,
+//			@PathVariable int quantity) {
+//		
+//	 	if(cartItemRepository.getProductById(id)==null) {
+//	 		shoppingCartService.addShoppingCartFirstTime(id,quantity);
+//	 	}
+////	 	else {
+////	 		shoppingCartService.addToExistingShoppingCart(id, quantity);
+////	 	}
+//		
+//		System.out.println("Success");
+//		return "redirect:/shopvibes/user/addtocart";
+//	}
+//	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 //	@ModelAttribute("addtocart")
 //	public CartItem cartItem() {
@@ -70,9 +111,9 @@ public class CartController {
 		shoppingCartService.updateShoppingCartItem(id,quantity);
 		return "redirect:shoppingCart";
 	}
-	@GetMapping("/removeCartItem/{id}")
-	public String removeItem(@PathVariable("id") int id, HttpServletRequest request) {
-		String sessionToken = (String) request.getSession(false).getAttribute("sessiontToken");
+	@GetMapping("/removeCartItem/{id}/{sessionToken}")
+	public String removeItem(@PathVariable("id") int id, HttpServletRequest request,@PathVariable("sessionToken") String sessionToken ) {
+		sessionToken = (String) request.getSession(false).getAttribute("sessiontToken");
 		System.out.println("got here ");
 		shoppingCartService.removeCartIemFromShoppingCart(id,sessionToken);
 		return "redirect:/shoppingCart";
@@ -86,4 +127,13 @@ public class CartController {
 		return "redirect:/shoppingCart";
 	}
 	
+	@GetMapping("/deletefromcart/{id}")
+	public String deleteCategory(@PathVariable int id) {
+		
+		shoppingCartRepository.deleteProductById(id);
+	//	cartItemRepository.deleteById(id);
+	//	cartItemRepository.deleteProductById(id);
+		System.out.println("Deleted");
+		return "redirect:/shopvibes/user/addtocart";
+	}
 }

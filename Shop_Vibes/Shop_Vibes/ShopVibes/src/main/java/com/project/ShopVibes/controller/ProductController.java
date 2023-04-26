@@ -64,7 +64,7 @@ public class ProductController {
 	}
 	
 	@GetMapping("/{id}")
-	public String deleteCategory(@PathVariable int id) {
+	public String deleteProduct(@PathVariable int id) {
 		productService.deleteProductById(id);
 		return "redirect:/shopvibes/admin/listofproducts";
 	}

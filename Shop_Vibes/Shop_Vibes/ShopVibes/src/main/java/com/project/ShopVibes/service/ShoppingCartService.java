@@ -34,7 +34,19 @@ public class ShoppingCartService {
 		return shoppingCartRepository.save(shoppingCart);
 
 	}
+	
+//	public CartItem addShoppingCartFirstTime(Integer id, int quantity) {
+//		
+//		CartItem cartItem = new CartItem();
+//		cartItem.setQuantity(quantity);
+//		cartItem.setDate(new Date());
+//		cartItem.setProduct(productService.getProductById(id));
+//		
+//		return cartItemRepository.save(cartItem);
+//
+//	}
 
+	
 	
 	public ShoppingCart addToExistingShoppingCart(Integer id, String sessionToken, int quantity) {
 
@@ -99,4 +111,7 @@ public class ShoppingCartService {
 		shoppingCartRepository.delete(sh);
 		
 	}
+	
+	
+	
 }

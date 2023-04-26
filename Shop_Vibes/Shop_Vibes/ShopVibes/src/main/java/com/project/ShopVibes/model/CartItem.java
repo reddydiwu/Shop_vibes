@@ -1,8 +1,8 @@
 package com.project.ShopVibes.model;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -28,7 +28,7 @@ public class CartItem {
 	@JoinColumn(name = "product_id",nullable=false, updatable=false)
 	private Product product;
 	
-	
+	private Set<CartItem> items = new HashSet<CartItem>();
 	
 //	private List<Product> products = new ArrayList<>();
 //	
@@ -51,6 +51,16 @@ public class CartItem {
 	}
 
 	
+
+	public CartItem(int quantity, Date date, Product product, Set<CartItem> items) {
+		super();
+		this.quantity = quantity;
+		this.date = date;
+		this.product = product;
+		this.items = items;
+	}
+
+
 
 	public CartItem() {
 		super();
@@ -133,6 +143,18 @@ public class CartItem {
 	@Override
 	public String toString() {
 		return "CartItem [id=" + id + ", product=" + product + "]";
+	}
+
+
+
+	public Set<CartItem> getItems() {
+		return items;
+	}
+
+
+
+	public void setItems(Set<CartItem> items) {
+		this.items = items;
 	}
 
 }

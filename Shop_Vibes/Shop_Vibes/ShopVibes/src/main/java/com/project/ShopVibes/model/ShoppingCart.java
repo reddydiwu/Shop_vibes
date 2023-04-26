@@ -10,6 +10,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -35,6 +37,8 @@ public class ShoppingCart {
 	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER )
 	private Set<CartItem> items = new HashSet<CartItem>();
 	private String sessionToken; 
+	
+
 	
 	public ShoppingCart() {
 	}

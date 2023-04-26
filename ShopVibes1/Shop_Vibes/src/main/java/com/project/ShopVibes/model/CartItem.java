@@ -18,7 +18,7 @@ import javax.persistence.TemporalType;
 @Table(name = "cartitem")
 public class CartItem {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	private int quantity;
 	@Temporal(TemporalType.DATE)

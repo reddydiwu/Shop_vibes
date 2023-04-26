@@ -347,32 +347,74 @@ tr:nth-child(even) {
 	<div class="fixed-top-right">
 		<div class="card mb-4">
 			<div class="card-header py-3">
-				<h3 class="mb-0" align="center">Order Summary</h3>
+				<h5 class="mb-0">Summary</h5>
 			</div>
 			<div class="card-body">
 				<ul class="list-group list-group-flush">
 					<li>
-
-						<h4 align="center">
+						
+						<p>
 							Total price: <span id="total"></span>
-						</h4>
+						</p>
 					</li>
 				</ul>
-				<form action="checkout" >
-					<button type="submit" class="btn btn-primary btn-lg btn-block">CheckOut</button>
-				</form> 
-					<br>
-				
-					
-			<form action="address" >
-					<button type="submit" class="btn btn-success btn-lg btn-block">Add
-						address</button>
-				</form> 
+				<form action="checkout">
+							<button type="submit" class="btn btn-primary btn-lg btn-block">CheckOut</button>
+						</form>
+						<br>
+				<button type="button" class="btn btn-success btn-lg btn-block"
+					data-toggle="modal" data-target="#addressModal">Add
+					address</button>
 			</div>
 		</div>
 	</div>
 
+	<!-- Modal -->
+	<div class="modal fade" id="addressModal" tabindex="-1" role="dialog"
+		aria-labelledby="addressModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="addressModalLabel">Add Address</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form action="address" method="post" class="form-group">
+						<div class="mb-3">
+							<label>Enter Phone number</label> <input type="number"
+								name="phno" class="form-control" required autofocus="autofocus">
+						</div>
+						<div class="mb-3">
+							<label>Enter Street</label> <input type="text" name="street"
+								class="form-control" required autofocus="autofocus">
+						</div>
 
+						<div class="mb-3">
+							<label>Enter City</label> <input type="text" name="city"
+								class="form-control" required autofocus="autofocus">
+						</div>
+
+						<div class="mb-3">
+							<label>Enter State</label> <input type="text" name="state"
+								class="form-control" required autofocus="autofocus">
+						</div>
+						<div class="mb-3">
+							<label>Enter Country</label> <input type="text" name="country"
+								class="form-control" required autofocus="autofocus">
+						</div>
+						
+						<button class="btn btn-primary col-md-12">Add Address</button>
+						<div id="success-message" class="hidden">Address saved
+							successfully!</div>
+				</div>
+				</form>
+			</div>
+
+		</div>
+	</div>
 	</div>
 
 
