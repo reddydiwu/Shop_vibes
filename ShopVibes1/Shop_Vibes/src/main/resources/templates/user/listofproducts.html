@@ -3,31 +3,114 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>List Of Products</title>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+
+<link rel="stylesheet" type="text/css" href="/style/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,600;1,400&display=swap"
+	rel="stylesheet">
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css">
+
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
 <style>
- 
+
+.dropdown:hover .dropdown-content {
+	display: block;
+}
+
+/* Style the dropdown container */
+.dropdown {
+	position: relative;
+	display: inline-block;
+}
+
+/* Style the dropdown button */
+.dropdown h3 {
+	font-size: 25px;
+	font-weight: bold;
+	color: #333;
+	cursor: pointer;
+
+}
+
+/* Style the dropdown content */
+.dropdown-content {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	z-index: 1;
+	display: none;
+	padding: 8px 0;
+	background-color: black;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(2, 3, 5, 0.2);
+}
+
+/* Style the links inside the dropdown content */
+.dropdown-content a {
+	display: block;
+	color: #333;
+	padding: 6px 16px;
+	text-decoration: none;
+}
+
+/* Change the background color of the dropdown links on hover */
+.dropdown-content a:hover {
+	background-color: #0cc798;
+}
 
 .product img {
-	max-width: 100%;
-	height: auto;
+	width: 250px;
+	height: 250px;
+	object-fit: cover; /* to prevent image distortion */
 	margin-bottom: 10px;
 }
 
 .product-grid {
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: space-between;
+	
 }
 
 .product {
-	width: calc(33.33% - 20px);
-	margin-bottom: 20px;
-	border: 1px solid #ddd;
-	padding: 20px;
-	text-align: center;
+  position: relative;
+  width: calc(33.33% - 20px);
+  margin-bottom: 20px;
+  margin-right: 20px; /* add margin-right property */
+  padding: 20px;
+  text-align: center;
+  border: 2px solid black; /* 2px thick black border */
+  box-shadow: 6px 6px 6px #888;
+  transition: all 0.3s ease-in-out;
+  
+}
+.product:hover {
+  transform: scale(1.05); /* increase size of the product on hover */
+  box-shadow: 8px 8px 8px #aaa; /* change box shadow on hover */
+ 
+  
+}
+
+.product:hover h3{
+  text-decoration: underline;
+  
+}
+
+.product button {
+  position: absolute;
+  bottom: 3px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.product button:hover {
+ 
+  background: grey;
 }
 
 @media ( max-width : 767px) {
@@ -41,66 +124,124 @@
 		width: 100%;
 	}
 }
+
 .row {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: green;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: black;
 }
- 
+
+a.navbar-brand h4 {
+  color: black;
+}
+
+h1 {
+  text-align: center;  
+}
+
+nav {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 1000 !important;
+}
+
+
 </style>
 
-
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<!-- Add the addToCart function -->
-	<script>
-		function addToCart(productId) {
-		
+<!-- Add the addToCart function -->
+<script>
+	function addToCart(productId) {
+
 		var url = "/shopvibes/user/addToCart/" + productId;
 
-		  $.ajax({
-		    type: "POST",
-		    url: url,
-		    data: { id: productId, quantity: 1 },
-		    success: function(response) {
-		      window.location.href = "/shopvibes/user/home";
-		    },
-		    error: function(error) {
-		      console.log(error);
-		    }
-		  });
-		}
-	</script>
-
-
-
+		$.ajax({
+			type : "POST",
+			url : url,
+			data : {
+				id : productId,
+				quantity : 1
+			},
+			success : function(response) {
+				window.location.href = "/shopvibes/user/home";
+			},
+			error : function(error) {
+				console.log(error);
+			}
+		});
+	}
+</script>
 
 </head>
 <body>
-	<!-- create navigation bar ( header) -->
-	<nav class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed"
-					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-					aria-controls="navbar">
-					<span class="sr-only">Toggle navigation</span>  <span
-						class="icon-bar"></span>  <span class="icon-bar"></span>  <span
-						class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="#" th:href="@{/shopvibes/user/}">Home</a>
-				<a class="navbar-brand" href="#" th:href="@{/shopvibes/user/addtocart}">Cart</a>
+
+	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#">ShopVibes</a>
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+				<th:block th:if="${user!=NULL}">
+					<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+						<a class="navbar-brand" th:href="@{/shopvibes/user/addtocart}"><h4>Cart</h4></a>
+						<div class="dropdown">
+							<h4>Welcome [[${user.firstName}]]</h4>
+							<div class="dropdown-content">
+
+								
+								<a class="navbar-brand"
+									th:href="@{/shopvibes/user/edit/{id}(id=${user.id})}">Edit
+									User</a> <a class="navbar-brand" href="#"
+									th:href="@{/shopvibes/user/changePassword}">ChangePassword</a>
+								<a class="navbar-brand" href="#" th:href="@{/logout}">Logout</a>
+								</li>
+							</div>
+						</div>
+
+					</ul>
+				</th:block>
 			</div>
 		</div>
 	</nav>
+	<br>
+	<br>
+	
+	<div class="header">
+		<div class="container">
+			<div class="navbar">
+				<div class="logo">
+					<img src="/images/logo.jpg" width="85px">
+				</div>
 
-	     
+				<img src="/images/menu1.png" class="menu-icon"
+					onclick="menutoggle()">
+			</div>
+			<div class="row">
+				<div class="col-2">
+					<h2>Best Place for Best Peoples For Best Products</h2>
+						</div>
+				<div class="col-2">
+					<img src="/images/front_img2.jpg">
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<br>
 	<br>
 	<div class="container">
 		<div class="row">
-			<h1>List Of Products</h1>
+			<h1 text-align: center;>List Of Products</h1>
 		</div>
+	
 		<div class="product-grid">
 			<div class="product" th:each="product: ${products}">
 				<img th:src="${product.imageUrl}" alt="Product Image" height=250px
@@ -108,27 +249,120 @@
 				<h3 th:text="${product.productName}"></h3>
 				<p th:text="${product.description}"></p>
 				<p th:text="'Price: Rs.' + ${product.price}"></p>
-				<p th:text="'Category: ' + ${product.category}"></p><br>
-				
+				<p th:text="'Category: ' + ${product.category}"></p>
+				<br>
+
 				<form th:action="@{/shopvibes/user/addToCart/{id}/{quantity} (id=${product.id},quantity=1)}"
-					method="post" th:object="${cart}">
-					<button type="submit" class="btn btn-primary">Add to Cart</button>
-					</form><br>
-		<!-- 	 <form th:action="@{/shopvibes/user/addToCart/{id}/{quantity} (id=${product.id},quantity=1)}"
-					method="post" th:object="${cart}">
-					<button type="submit" class="btn btn-primary">Add to Cart</button>
-					</form><br> -->
-		<!-- 	 <a  th:onclick="'javascript:addToCart(' + ${product.id} + ');'"
-					class="btn btn-primary" >Add to Cart</a>
- -->
-			<!-- 	<button class="btn btn-primary text-uppercase" >Add
-					to cart</button>   -->
+      method="post" th:object="${cart}"
+      onsubmit="return confirmAddToCart();">
+    <button type="submit" class="btn btn-success">Add to Cart</button>
+</form>
 
+				<br>
 
-			<!-- <a th:href="@{/shopvibes/order/{id}(id=${product.id})}"
-					class="btn btn-danger">Buy Now</a> -->	
 			</div>
 		</div>
 	</div>
+
+	<!-- featured Products -->
+	<div class="small-container">
+		<h2 class="title">Featured Products</h2>
+		<div class="row">
+			<div class="col-4">
+				<img src="/images/red-t-shirt.jpg">
+				<h4>Red Printed T-Shirt</h4>
+				<p>Rs: 50</p>
+			</div>
+			<div class="col-4">
+				<img src="/images/shoes.jpg">
+				<h4>Cassual Shoes</h4>
+				<p>Rs: 25</p>
+			</div>
+			<div class="col-4">
+				<img src="/images/trimmer.jpg">
+				<h4>Philips Trimmer</h4>
+				<p>Rs: 150</p>
+			</div>
+			<div class="col-4">
+				<img src="/images/toys.jpg">
+				<h4>Remote Car</h4>
+				<p>Rs: 500</p>
+			</div>
+		</div>
+	</div>
+	<!-- offers -->
+	<div class="offer">
+		<div clas="small-cointainer">
+			<div class="row">
+				<div class="col-2">
+					<img src="/images/Mi-Band.jpg" class="offer-img">
+				</div>
+				<div class="col-2">
+					<p>Exclusively Available on ShopVibes</p>
+					<h1>Smart Band 4</h1>
+					<small>The Mi Smart Band 4 features a 39.9% larger Amoled
+						color full-touch display with adjustable brightness, so everything
+						is clear as can be.</small>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- footer -->
+	<div class="footer">
+		<div class="container">
+			<div class="row">
+
+				<div class="footer-col-1">
+					<h3>About</h3>
+					<ul>
+
+
+					</ul>
+				</div>
+
+
+				<div class="footer-col-1">
+					<h3>Useful Links</h3>
+					<ul>
+						<li>Coupons</li>
+						<li>Blog Post</li>
+						<li>Return policy</li>
+						<li>Join Affilate</li>
+					</ul>
+				</div>
+				<div class="footer-col-4">
+					<h3>Follow Us on</h3>
+					<ul>
+						<li>Facebook</li>
+						<li>Twitter</li>
+						<li>Instagram</li>
+						<li>YouTube</li>
+					</ul>
+				</div>
+				<hr>
+				<p class="copyright">&#169; 2023 - ShopVibes</p>
+			</div>
+		</div>
+	</div>
+	<script>
+		var MenuItem = document.getElementById("MenuItem");
+		MenuItem.style.maxHeight = "0px";
+		function menutoggle() {
+			if (MenuItem.style.maxHeight == "0px") {
+				MenuItem.style.maxHeight = "200px";
+			} else {
+				MenuItem.style.maxHeight = "0px";
+			}
+		}
+		
+		function confirmAddToCart() {
+		    if(confirm('Product added successfully to cart')) {
+		        return true;
+		    } else {
+		        return false;
+		    }
+		}
+	</script>
 </body>
 </html>

@@ -1,6 +1,7 @@
 package com.project.ShopVibes.controller;
 
 import java.security.Principal;
+import java.util.concurrent.TimeUnit;
 
 import javax.servlet.http.HttpSession;
 
@@ -60,29 +61,62 @@ public class HomeController {
 		return "register";
 	}
 
-	@PostMapping("/createUser")
-	public String createuser(@ModelAttribute UserDtls user, HttpSession session) {
+//	@PostMapping("/createUser")
+//	public String createuser(@ModelAttribute UserDtls user, HttpSession session) {
+//
+//		// System.out.println(user);
+//
+//		boolean f = userService.checkEmail(user.getEmail());
+//
+//		if (f) {
+//			session.setAttribute("msg", "Email Id alreday exists");
+//			return "redirect:/shopvibes/register";
+//		}
+//
+//		else {
+//			UserDtls userDtls = userService.createUser(user);
+//			if (userDtls != null) {
+//				session.setAttribute("msg", "Register Sucessfully");
+//				try {
+//		            TimeUnit.SECONDS.sleep(2);
+//		        } catch (InterruptedException e) {
+//		            e.printStackTrace();
+//		        }
+//			} else {
+//				session.setAttribute("msg", "Something wrong on server");
+//			}
+//		}
+//		
+//
+//		return "redirect:/shopvibes/signin";
+//	}
 
-		// System.out.println(user);
+	
+	
+	@PostMapping("/createUser")
+	public String createuser(@ModelAttribute UserDtls user, HttpSession session, Model model) {
 
 		boolean f = userService.checkEmail(user.getEmail());
 
 		if (f) {
-			session.setAttribute("msg", "Email Id alreday exists");
+			session.setAttribute("msg", "Email Id already exists");
+			return "redirect:/shopvibes/register";
 		}
 
-		else {
-			UserDtls userDtls = userService.createUser(user);
-			if (userDtls != null) {
-				session.setAttribute("msg", "Register Sucessfully");
-			} else {
-				session.setAttribute("msg", "Something wrong on server");
-			}
+		UserDtls userDtls = userService.createUser(user);
+		if (userDtls != null) {
+			session.setAttribute("msg", "Registered successfully");
+			model.addAttribute("redirect:/shopvibes/signin");
+			return "success";
+		} else {
+			session.setAttribute("msg", "Something went wrong on server");
+			return "redirect:/shopvibes/register";
 		}
-
-		return "redirect:/shopvibes/register";
 	}
-
+	
+	
+	
+	
 	@GetMapping("/forgot")
 	public String forgot() {
 		return "forgot";

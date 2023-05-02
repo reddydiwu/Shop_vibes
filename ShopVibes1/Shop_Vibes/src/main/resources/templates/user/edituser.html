@@ -2,13 +2,19 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
-<title>Register here</title>
+<title>Insert title here</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
 	rel="stylesheet"
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
 <style>
+body {
+	background-image:
+		url('https://www.google.com/url?sa=i&url=https%3A%2F%2Fstackdiary.com%2Fcss-animated-gradient-background%2F&psig=AOvVaw1ftrS-GI1IHMDLI4DHI-5r&ust=1681983258072000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCOjLjIfStf4CFQAAAAAdAAAAABAE');
+	background-size: cover;
+	background-repeat: no-repeat;
+}
 
 .navbar-nav li a {
 	font-size: 16px;
@@ -16,6 +22,9 @@
 </style>
 </head>
 <body>
+
+
+
 
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 		<div class="container-fluid">
@@ -28,25 +37,30 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-				<th:block th:if="${user==NULL}">
+				<th:block th:if="${user!=NULL}">
 					<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 
-						<li class="nav-item"><a class="navbar-brand" href="signin">Login</a></li>
+						
 
 						<li class="nav-item"><a class="navbar-brand" href="#"
-							th:href="@{/shopvibes/}">Home</a></li>
+							th:href="@{/shopvibes/user/}">Home</a></li>
 					</ul>
 				</th:block>
+
+
+
 
 			</div>
 		</div>
 	</nav>
 
+
+
 	<div class="container p-3">
 		<div class="row">
 			<div class="col-md-6 offset-md-3">
 				<div class="card">
-					<div class="card-header text-center fs-4">Register Page</div>
+					<div class="card-header text-center fs-4">Update Account</div>
 
 					<th:block th:if="${session.msg}">
 						<p class="text-center fs-4 text-success">[[${session.msg}]]</p>
@@ -55,7 +69,8 @@
 
 
 					<div class="card-body">
-						<form action="createUser" method="post">
+						<form th:action="@{/shopvibes/user/edit/{id} (id=${user.id})}"
+					method="post" th:object="${user}">
 							<div class="mb-3">
 								<label>Enter First Name</label> <input type="text"
 									name="firstName" class="form-control" pattern="[A-Za-z ]+"
@@ -63,7 +78,6 @@
 									class="text-muted">Enter only alphabets and a single
 									whitespace (maximum 16 characters).</small>
 							</div>
-
 
 							<div class="mb-3">
 								<label>Enter Last Name</label> <input type="text"
@@ -86,13 +100,16 @@
 									name="password" class="form-control" required
 									autofocus="autofocus"
 									pattern="(?=.*\d)(?=.*[A-Z])(?=.*\W).{6,10}">
-									<small
-									class="text-muted">Atleast One cap, small, digit, Special char required</small>
 							</div>
 
-							<button class="btn btn-primary col-md-12">Register</button>
-						</form>
+							<!-- <div class="mb-3">
+								<label>Enter Password</label> <input type="password"
+									name="password" class="form-control" required
+									autofocus="autofocus">
+							</div> -->
 
+							<button class="btn btn-primary col-md-12">Update</button>
+						</form>
 					</div>
 				</div>
 			</div>

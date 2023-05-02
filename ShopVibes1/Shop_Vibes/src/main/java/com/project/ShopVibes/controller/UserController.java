@@ -13,17 +13,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.project.ShopVibes.model.Address;
+import com.project.ShopVibes.model.Product;
 import com.project.ShopVibes.model.UserDtls;
 import com.project.ShopVibes.repository.AddressRepository;
 import com.project.ShopVibes.repository.CartItemRepository;
 import com.project.ShopVibes.repository.ProductRepository;
 import com.project.ShopVibes.repository.UserRepository;
+import com.project.ShopVibes.service.UserService;
 
 @Controller
 @RequestMapping("/shopvibes/user")
@@ -38,6 +41,9 @@ public class UserController {
 	@Autowired
 	private UserRepository userRepo;
 
+	@Autowired
+	private UserService userService;
+	
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 	
@@ -55,14 +61,24 @@ public class UserController {
 	}
 
 	
-	
-	
+//	@GetMapping("/")
+//	public String home() {
+//		return "user/home";
+//	}
+
 	
 	@GetMapping("/")
-	public String home() {
-		return "user/home";
+	public ModelAndView getAllCategories() {
+		ModelAndView mav = new ModelAndView("user/listofproducts");
+		mav.addObject("products", productRepository.findAll());
+		return mav;
 	}
-
+	
+	
+	
+	
+	
+	
 	@GetMapping("/changePassword")
 	public String loadChangePassword() {
 		return "user/change_password";
@@ -88,7 +104,7 @@ public class UserController {
 				session.setAttribute("msg", "Password Change success");
 			}else {
 				session.setAttribute("msg", "Something went wrong");
-System.out.println("Hello");
+
 			}
 			
 		}else {
@@ -96,16 +112,42 @@ System.out.println("Hello");
 
 		}
 		
-		return "redirect:/shopvibes/user/changePassword";
+		return "redirect:/shopvibes/user/";
 	}
 	
-	@GetMapping("/listofproducts")
-	public ModelAndView getAllCategories() {
-		ModelAndView mav = new ModelAndView("user/listofproducts");
-		mav.addObject("products", productRepository.findAll());
-		return mav;
+	
+	@GetMapping("/edit/{id}")
+	public String editUserForm(@PathVariable int id, Model model) {
+		model.addAttribute("user",userService.getUserById(id));
+		return "user/edituser";
 	}
 	
+	@PostMapping("/edit/{id}")
+	public String updateuser(@PathVariable int id, 
+								@ModelAttribute("user") UserDtls user, 
+								Model model) {
+		//get category from db
+		UserDtls existinguser = userService.getUserById(id);
+		
+		existinguser.setFirstName(user.getFirstName());
+		existinguser.setLastName(user.getLastName());
+		existinguser.setEmail(user.getEmail());
+		existinguser.setPassword(passwordEncoder.encode(user.getPassword()));
+		
+		userService.editUser(existinguser);
+		return "redirect:/shopvibes/signin";
+	}
+	
+	
+	
+	
+//	@GetMapping("/listofproducts")
+//	public ModelAndView getAllCategories() {
+//		ModelAndView mav = new ModelAndView("user/listofproducts");
+//		mav.addObject("products", productRepository.findAll());
+//		return mav;
+//	}
+//	
 	@GetMapping("/addtocart")
 	public ModelAndView addToCart() {
 		ModelAndView mav = new ModelAndView("user/addtocart");

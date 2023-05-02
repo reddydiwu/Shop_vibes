@@ -48,7 +48,7 @@ public class ProductController {
 	}
 	
 	@PostMapping("/edit/{id}")
-	public String updateCategory(@PathVariable int id, 
+	public String updateProduct(@PathVariable int id, 
 								@ModelAttribute("product") Product product, 
 								Model model) {
 		//get category from db

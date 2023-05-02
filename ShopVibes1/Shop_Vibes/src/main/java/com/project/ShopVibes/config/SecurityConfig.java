@@ -77,7 +77,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         .maximumSessions(2)
         .sessionRegistry(sessionRegistry())
         .and()
-        .invalidSessionUrl("/login?expired")
+        .invalidSessionUrl("/shopvibes/signin")
         .and()
     .csrf()
         .disable();

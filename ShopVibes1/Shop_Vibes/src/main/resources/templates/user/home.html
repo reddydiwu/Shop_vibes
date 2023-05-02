@@ -11,37 +11,84 @@
 	rel="stylesheet">
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css">
- 
+
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
 	rel="stylesheet"
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
- 	
+
 <style>
-h3{color:White
+.btn:hover {
+	background-color: green;
+	border: none;
+	border-radius: 10px;
+}
+
+h3 {
+	color: White
 }
 
 .dropdown {
-			position: relative;
-			display: inline-block;
-		}
+	position: relative;
+	display: inline-block;
+}
 
-		.dropdown-content {
-			display: none;
-			position: absolute;
-			z-index: 1;
-		}
+.dropdown-content {
+	display: none;
+	position: absolute;
+	z-index: 1;
+}
 
-		.dropdown:hover .dropdown-content {
-			display: block;
-		}
+.dropdown:hover .dropdown-content {
+	display: block;
+}
+
+/* Style the dropdown container */
+.dropdown {
+	position: relative;
+	display: inline-block;
+}
+
+/* Style the dropdown button */
+.dropdown h3 {
+	font-size: 25px;
+	font-weight: bold;
+	color: #333;
+	cursor: pointer;
+}
+
+/* Style the dropdown content */
+.dropdown-content {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	z-index: 1;
+	display: none;
+	padding: 8px 0;
+	background-color: black;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(2, 3, 5, 0.2);
+}
+
+/* Style the links inside the dropdown content */
+.dropdown-content a {
+	display: block;
+	color: #333;
+	padding: 6px 16px;
+	text-decoration: none;
+}
+
+/* Change the background color of the dropdown links on hover */
+.dropdown-content a:hover {
+	background-color: #0cc798;
+}
 </style>
 </head>
 <body>
 
 
-	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-primary" >
 		<div class="container-fluid">
 			<a class="navbar-brand" href="#">ShopVibes</a>
 			<button class="navbar-toggler" type="button"
@@ -55,37 +102,25 @@ h3{color:White
 				<th:block th:if="${user!=NULL}">
 					<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 
-						
-
-
-						<li class="nav-item">
-					<!-- 	<a class="navbar-brand" href="#" th:href="@{/shopvibes/user/}">Home</a> 
-						
-						<a class="navbar-brand" href="#" th:href="@{/shopvibes/about}">About</a> 
-						<a class="navbar-brand" href="#" th:href="@{/shopvibes/contact}">Contact</a>  -->
-					
-						
 						<div class="dropdown">
-							<h3 >Welcome [[${user.firstName}]]</h3>
+							<h3>Welcome [[${user.firstName}]]</h3>
 							<div class="dropdown-content">
-							<a class="navbar-brand" href="#" th:href="@{/shopvibes/user/changePassword}">ChangePassword</a>
-							<a class="navbar-brand" href="#" th:href="@{/logout}">Logout</a></li>
+
+								
+						<a class="navbar-brand" th:href="@{/shopvibes/user/edit/{id}(id=${user.id})}"
+							>Edit User</a>
+								<a class="navbar-brand" href="#"
+									th:href="@{/shopvibes/user/changePassword}">ChangePassword</a>
+								<a class="navbar-brand" href="#" th:href="@{/logout}">Logout</a>
+								</li>
+							</div>
 						</div>
-	</div>
-					<!-- 
-						<a class="navbar-brand" href="#" th:href="@{/category}">AddCategory</a> 
-						<a class="navbar-brand"	href="#" th:href="@{/listofproducts}">Products</a> 
-						<a class="navbar-brand" href="#" th:href="@{/product}">Product</a> 
-					 -->
 
 					</ul>
 				</th:block>
 			</div>
 		</div>
 	</nav>
- 
-	
-
 
 	<div class="header">
 		<div class="container">
@@ -100,7 +135,9 @@ h3{color:White
 			<div class="row">
 				<div class="col-2">
 					<h2>Best Place for Best Peoples For Best Products</h2>
-					<a href="/shopvibes/user/listofproducts" class="btn"><h4>Products &#8594</h4></a>
+					<a href="/shopvibes/user/listofproducts" class="btn"><h3
+							style="color: #fa6305;">Products &#8594</h3></a>
+
 				</div>
 				<div class="col-2">
 					<img src="/images/front_img2.jpg">
@@ -108,6 +145,8 @@ h3{color:White
 			</div>
 		</div>
 	</div>
+
+
 	<!-- Featured Categories -->
 	<div class="categories">
 		<h2 class="title">Latest Product</h2>
@@ -132,22 +171,22 @@ h3{color:White
 				<div class="col-4">
 					<img src="/images/red-t-shirt.jpg">
 					<h4>Red Printed T-Shirt</h4>
-					<p>$50</p>
+					<p>Rs: 50</p>
 				</div>
 				<div class="col-4">
 					<img src="/images/shoes.jpg">
 					<h4>Cassual Shoes</h4>
-					<p>$25</p>
+					<p>Rs: 25</p>
 				</div>
 				<div class="col-4">
 					<img src="/images/trimmer.jpg">
 					<h4>Philips Trimmer</h4>
-					<p>$150</p>
+					<p>Rs: 150</p>
 				</div>
 				<div class="col-4">
 					<img src="/images/toys.jpg">
 					<h4>Remote Car</h4>
-					<p>$500</p>
+					<p>Rs: 500</p>
 				</div>
 			</div>
 		</div>
@@ -163,26 +202,26 @@ h3{color:White
 						<h1>Smart Band 4</h1>
 						<small>The Mi Smart Band 4 features a 39.9% larger Amoled
 							color full-touch display with adjustable brightness, so
-							everything is clear as can be.</small> <a href="" class="btn">Buy Now</a>
+							everything is clear as can be.</small>
 					</div>
 				</div>
 			</div>
 		</div>
-		
+
 		<!-- footer -->
 		<div class="footer">
 			<div class="container">
 				<div class="row">
-				
-				<div class="footer-col-1">
+
+					<div class="footer-col-1">
 						<h3>About</h3>
 						<ul>
-							
-							
+
+
 						</ul>
 					</div>
-				
-				
+
+
 					<div class="footer-col-1">
 						<h3>Useful Links</h3>
 						<ul>
@@ -202,7 +241,7 @@ h3{color:White
 						</ul>
 					</div>
 					<hr>
-					<p class="copyright">Copyright 2023 - ShopVibes</p>
+					<p class="copyright">&#169; 2023 - ShopVibes</p>
 				</div>
 			</div>
 		</div>

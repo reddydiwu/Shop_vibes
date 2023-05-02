@@ -41,4 +41,22 @@ public class UserServiceImpl implements UserService {
 		return userRepo.findById(userId).get();
 	}
 
+	@Override
+	public UserDtls editUser(UserDtls user) {
+		
+		return userRepo.save(user);
+	}
+
+	@Override
+	public void deleteUserById(int id) {
+		userRepo.deleteById(id);
+		
+	}
+
+//	@Override
+//	public String getUserByRole(String role) {
+//		
+//		 userRepo.findByRole(role);
+//	}
+
 }

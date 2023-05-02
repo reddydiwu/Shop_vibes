@@ -1,5 +1,6 @@
 package com.project.ShopVibes.service;
 
+import com.project.ShopVibes.model.Product;
 import com.project.ShopVibes.model.UserDtls;
 
 public interface UserService {
@@ -9,4 +10,12 @@ public interface UserService {
 	public boolean checkEmail(String email);
 
 	public UserDtls getUserById(Integer userId);
+	
+UserDtls editUser(UserDtls user);
+	
+	void deleteUserById(int id);
+	
+	//public String getUserByRole(String role);
+
+	
 }

@@ -7,7 +7,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.project.ShopVibes.exceptions.UserRoleMisMatchException;
 import com.project.ShopVibes.model.UserDtls;
 import com.project.ShopVibes.repository.ProductRepository;
 import com.project.ShopVibes.repository.UserRepository;
@@ -92,7 +92,32 @@ public class AdminController {
 
 		}
 		
-		return "redirect:/shopvibes/admin/changePassword";
+		return "redirect:/shopvibes/admin/";
 	}
-	
+
+
+	@GetMapping("/{id}")
+	public String deleteUser(@PathVariable int id, String str) {
+	    try {
+	        UserDtls user = userService.getUserById(id);
+	        if(user.getRole().equalsIgnoreCase("ROLE_USER")) {
+	            userService.deleteUserById(id);
+	        } else {
+	        	str="User role is not ROLE_USER for id";
+	            throw new UserRoleMisMatchException(str + id);
+	        }
+	        return "redirect:/shopvibes/admin/userlist";
+	    } catch(NumberFormatException e) {
+	        return "redirect:/shopvibes/admin/exception-page";
+	    } catch(UserRoleMisMatchException e) {
+	        return "redirect:/shopvibes/admin/exception-page";
+	    } catch(Exception e) {
+	        return "redirect:/shopvibes/admin/exception-page";
+	    }
+	}
+
+	@GetMapping("/exception-page")
+	public String exception() {
+		return "admin/exception-page";
+	}
 }

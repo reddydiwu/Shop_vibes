@@ -9,68 +9,111 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,600;1,400&display=swap"
 	rel="stylesheet">
-<link rel="stylesheet" type="text/css"
-	href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css">
- 
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-	crossorigin="anonymous">
- 	
 
+<style>
+.navbar-nav a.navbar-brand, .navbar-nav a.nav-link {
+	font-size: 16px; /* Change this value as needed */
+}
+/* Navbar styles */
+.navbar {
+	background-color: #333;
+	overflow: hidden;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 60px;
+}
+
+/* Logo styles */
+.navbar-brand {
+	color: #fff;
+	font-size: 24px;
+	font-weight: bold;
+	padding-left: 20px;
+}
+
+/* Navigation links styles */
+.navbar-nav {
+	display: flex;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.navbar-nav li {
+	margin: 0;
+}
+
+.navbar-nav a {
+	display: block;
+	color: #fff;
+	text-align: center;
+	padding: 20px;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+.navbar-nav a:hover {
+	background-color: #555;
+}
+
+/* Right-aligned navigation links */
+.navbar-nav.right {
+	margin-right: 20px;
+}
+
+/* Responsive styles */
+@media only screen and (max-width: 600px) {
+	.navbar {
+		flex-direction: column;
+		height: auto;
+	}
+	.navbar-brand {
+		padding: 20px;
+	}
+	.navbar-nav {
+		width: 100%;
+		flex-direction: column;
+	}
+	.navbar-nav a {
+		border-bottom: 1px solid #fff;
+	}
+	.navbar-nav.right {
+		margin-right: 0;
+		margin-top: 20px;
+	}
+}
+</style>
 </head>
 <body>
 
 
-	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-		<div class="container-fluid">
-			<a class="navbar-brand" href="#">ShopVibes</a>
-			<button class="navbar-toggler" type="button"
-				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-				aria-controls="navbarSupportedContent" aria-expanded="false"
-				aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-				
-					<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-
-						
+	<nav class="navbar">
+		<a class="navbar-brand" href="#">ShopVibes</a>
 
 
-						<li class="nav-item">
-						<a class="navbar-brand" href="#" th:href="@{/shopvibes/user/}">Home</a> 
-						
-						<a class="navbar-brand" href="#" th:href="@{/shopvibes/about}">About</a> 
-						<a class="navbar-brand" href="#" th:href="@{/shopvibes/contact}">Contact</a> 
-						
-						<a class="navbar-brand" href="#" th:href="@{/shopvibes/user/changePassword}">ChangePassword</a>
-							<a class="navbar-brand" href="#" th:href="@{/logout}">Logout</a></li>
-
-
-					</ul>
-				</th:block>
-			</div>
-		</div>
+		<ul class="navbar-nav right">
+			<li class="nav-item"><a class="nav-link" href="register">Register</a></li>
+			<li class="nav-item"><a class="navbar-brand" href="#"
+				th:href="@{signin}">Login</a></li>
+		</ul>
 	</nav>
- 
+
 
 	<div class="header">
 		<div class="container">
-			<div class="navbar">
-				<div class="logo">
-					<img src="/images/logo.jpg" width="85px">
-				</div>
 
-				<img src="/images/menu1.png" class="menu-icon"
-					onclick="menutoggle()">
+			<div class="logo">
+				<img src="/images/logo.jpg" width="85px">
 			</div>
+
+			<img src="/images/menu1.png" class="menu-icon" onclick="menutoggle()">
+
 			<div class="row">
 				<div class="col-2">
 					<h2>Best Place for Best Peoples For Best Products</h2>
-					<a href="/shopvibes/user/listofproducts" class="btn">Products &#8594</a>
+
 				</div>
 				<div class="col-2">
 					<img src="/images/front_img2.jpg">
@@ -78,6 +121,9 @@
 			</div>
 		</div>
 	</div>
+	
+	
+	
 	<!-- Featured Categories -->
 	<div class="categories">
 		<h2 class="title">Latest Product</h2>
@@ -102,22 +148,22 @@
 				<div class="col-4">
 					<img src="/images/red-t-shirt.jpg">
 					<h4>Red Printed T-Shirt</h4>
-					<p>$50</p>
+					<p>Rs: 50</p>
 				</div>
 				<div class="col-4">
 					<img src="/images/shoes.jpg">
 					<h4>Cassual Shoes</h4>
-					<p>$25</p>
+					<p>Rs: 25</p>
 				</div>
 				<div class="col-4">
 					<img src="/images/trimmer.jpg">
 					<h4>Philips Trimmer</h4>
-					<p>$150</p>
+					<p>Rs: 150</p>
 				</div>
 				<div class="col-4">
 					<img src="/images/toys.jpg">
 					<h4>Remote Car</h4>
-					<p>$500</p>
+					<p>Rs: 500</p>
 				</div>
 			</div>
 		</div>
@@ -133,26 +179,26 @@
 						<h1>Smart Band 4</h1>
 						<small>The Mi Smart Band 4 features a 39.9% larger Amoled
 							color full-touch display with adjustable brightness, so
-							everything is clear as can be.</small> <a href="" class="btn">Buy Now</a>
+							everything is clear as can be.</small>
 					</div>
 				</div>
 			</div>
 		</div>
-		
+
 		<!-- footer -->
 		<div class="footer">
 			<div class="container">
 				<div class="row">
-				
-				<div class="footer-col-1">
+
+					<div class="footer-col-1">
 						<h3>About</h3>
 						<ul>
-							
-							
+
+
 						</ul>
 					</div>
-				
-				
+
+
 					<div class="footer-col-1">
 						<h3>Useful Links</h3>
 						<ul>
@@ -172,7 +218,7 @@
 						</ul>
 					</div>
 					<hr>
-					<p class="copyright">Copyright 2023 - ShopVibes</p>
+					<p class="copyright">&#169; 2023 - ShopVibes</p>
 				</div>
 			</div>
 		</div>
