@@ -3,7 +3,7 @@
 <head>
 <meta name="viewport" content="width-device-width, initial-scale=1.0">
 <title>ShopVibes</title>
-<link rel="stylesheet" type="text/css" href="/style/styleN.css">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link
@@ -19,6 +19,271 @@
 
 
 <style>
+
+@charset "UTF-8";
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+body{
+	font-family: 'Poppins', sans-serif;
+}
+.navbar{
+	display: flex;
+	align-items: center;
+	padding: 20px;
+}
+nav{
+	flex: 1;
+	text-align: right;
+}
+nav ul{
+	display: inline-block;
+	list-style-type: none;
+}
+nav ul li{
+	display: inline-block;
+	margin-right: 20px;
+}
+a{
+	text-decoration: none;
+	color: #080404;
+}
+p{
+	color: #555;
+}
+.container{
+	max-width: 1300px;
+	margin: auto;
+	padding-left: 25px;
+	padding-right: 25px;
+}
+.row{
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+.col-2{
+	flex-basis: 50%;
+	min-width: 300px;
+	text-align: center;
+	margin-top: 120px;
+	display: flex;
+    flex-direction: column;
+	
+}
+.col-2 img{
+	max-width: 100%;
+	border: 100%;
+	padding: 50px 0;
+	width: 500px;
+}
+.col-2 h1{
+	font-size: 50px;
+	line-height: 60px;
+	margin: 25px 0;
+}
+.logo {
+	margin-right: 60px;
+  }
+
+
+.btn1{
+	display: inline-block;
+	background: #ff523b;
+	color: #fff;
+	padding: 8px 30px;
+	margin: 30px 0;
+	border-radius: 30px;
+	transition: background 0.5;
+	text-decoration: none;
+	width: 50%;
+	align-self: center;
+}.button-container {
+    text-align: center;
+}
+.btn1:hover{
+	background: #57af04;
+}
+.header{
+	background: #6ddacbfb;
+	height: 100vh;
+}
+.header{
+	margin-top: 0px;
+}
+.categories{
+	margin: 70px 0;
+}
+.col-3{
+	flex-basis: 30%;
+	min-width: 250px;
+	margin-bottom: 30px;
+}
+.col-3 img{
+	width: 100%
+}
+.small-container{
+	max-width: 1080px;
+	margin: auto;
+	padding-left: 25px;
+	padding-right: 25px;
+}
+.col-4{
+	flex-basis: 25%;
+	padding: 10px;
+	min-width: 20px;
+	margin-bottom: 50px;
+	transition: transform 0.5s;
+}
+.col-4 img{
+	width: 100%;
+}
+.title{
+	text-align: center;
+	margin: 0 auto 80px;
+	position: relative;
+	line-height: 60px;
+	color: #555;
+}
+.title:after{
+	content: '';
+	background: #ff523b;
+	widows: 80px;
+	height: 5px;
+	border-radius: 5px;
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	transform: translateX(-50%); 
+}
+.col-4:hover{
+	transform: translateY(-50px);
+}
+.offer{
+	margin-top: 80px;
+	padding: 30px;
+}
+.col-2 .offer-img{
+	padding: 50px;
+}
+.small{
+	color: #555;
+}
+.brands{
+	margin: 100px;
+}
+col-5{
+	width: 160px;
+}
+.col-5 img{
+	width: 50%;
+	cursor: pointer;
+	filter: grayscale(100%); 
+}
+.col-5 img:hover{
+	filter: grayscale(100%);
+}
+.footer{
+	background: #000;
+	color: #8a8a8a;
+	font-size: 14px;
+	padding: 60px 0 20px;
+}
+.footer p{
+	color: #8a8a8a;
+}
+.footer h3{
+	color: #fff;
+	margin-bottom: 20px;
+}
+.footer-col-1, .footer-col-2, .footer-col-3, .footer-col-4{
+	min-width: 250px;
+	margin-bottom: 20px;
+}
+.footer-col-1{
+	flex-basis: 30%
+}
+.footer-col-2{
+	flex: 1;
+	text-align: center; 
+}
+.footer-col-2 img{
+	width: 180px;
+	margin-bottom: 20px;
+}
+.footer-col-3, .footer-col-4{
+	flex-basis: 12%;
+	text-align: center;
+}
+ul{
+	list-style-type: none;
+}
+.footer hr{
+	border: none;
+	background: #b5b5b5;
+	height: 1px;
+	margin: 20px 0;
+}
+.copyright{
+	text-align: center;
+}
+.copyrigth{
+	text-align: center;
+}
+.menu-icon{
+	width: 28px;
+	margin-left: 20px;
+	display: none;
+}
+@media only screen and (max-width: 800px){
+	nav ul{
+		position: absolute;
+		top: 70px;
+		left: 0;
+		background: #333;
+		width: 100%;
+		overflow: hidden;
+		transition: max-height 0.5s;
+	}
+	nav ul il{
+		display: block;
+		margin-right: 50px;
+		margin-top: 10px;
+		margin-bottom: 10px;  
+	}
+	nav ul il a{
+		color: #fff;
+	}
+	.menu-icon{
+		display: block;
+		cursor: pointer;
+	}
+}
+
+/*--- products page --*/
+.row-2{
+	justify-content: space-between;
+	margin: 100px auto 50px;
+}
+select{
+	border: 1px solid #ff523b;
+	padding: 5px;
+}
+select:focus{
+	outline: none;
+}
+@media only screen and (max-width: 800px){
+	.row{
+		text-align: center;
+	}
+	.col-2, .col-3, .col-4{
+		flex-basis: 100%;
+	}
+}
+
 nav {
   position: fixed !important;
   top: 0 !important;
@@ -58,7 +323,7 @@ nav {
 
 					<li class="nav-item">
 						<h4>Welcome</h4> <a class="navbar-brand" href="#"
-						th:href="@{/shopvibes/admin/changePassword}">ChangePassword</a> <a
+						th:href="@{/admin/changePassword}">ChangePassword</a> <a
 						class="navbar-brand" href="#" th:href="@{/logout}">Logout</a>
 					</li>
 
@@ -70,24 +335,24 @@ nav {
 <br>
 <br>
 <br>
+<br>
+
 	<form action="shopVibe">
 		<div class="header">
 			<div class="container">
 				<div class="navbar">
 					<div class="logo">
-						<img src="/images/logo.jpg" width="85px">
+						<img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHCBIUERUSEhcSEhAVEhUSEhIRFRIRERISGRgaGRkdGBgcIS8lKR4rHxoWJz0nKzMxNjU1HCQ7QD40Py41NTEBDAwMEA8QHxISHzYrJCwxNDQ0NDQ1NjY0NDY0NDQ0NDQ0NDQ2NDQ0NjQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NP/AABEIAOEA4QMBIgACEQEDEQH/xAAbAAEAAgMBAQAAAAAAAAAAAAAABQYBBAcDAv/EAEMQAAICAQICAgoPCAMBAAAAAAABAgMEERIFIQYTFjEzQVFTYXOx0QcUFSIyNFJxdIGRkpOisiNCVGNywdLiocLhJP/EABsBAQACAwEBAAAAAAAAAAAAAAACBgEDBAUH/8QANhEAAgECAQgIBAYDAAAAAAAAAAECAxEEEiExQVFxkdEUFTJSYYGhsQUzNMETFiJT8PFCYnL/2gAMAwEAAhEDEQA/AOzAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGADWyM6qtpWThBtapTkotr6zy91sbx1X34eso3slL9vR5t/qKZodEKClG9zy6/wAQlSqOGTe3j4XO2e62N46r78fWPdbG8dV9+PrOJaDQl0dbTT1rLuriztvutjeOq+/H1j3XxvHU/fj6zieg0Q6Mto61l3VxZ3eqyMkpRaaa1TT1TXkZ6EV0c5YdHmYehEnqjleZ2PYjK8Uz6B87kNyMXJXPoHzuQ3C4ufQMGTIAAAAAAAAAAAAAAAAAAAAABgyYAOc+yT3enzUv1FLLp7JPd6fNS/UUs7qPYRWsd9RLy9kbWBw+2+eyqEpy7bUdNEvK3yX1khf0WzoLdKluK7e2cZtfUnqSvRzWzBuxqJKGVKxT0b2uyC05Rl9TRD2e3sSesuuqfa1euyXzP4LGVJtpWM/hU4wjKSk761ay8NDz+aIhowfUmfKNpxs6djcadGNjQ2btcat67tve08HkPvst/lfn/wBSFze5Yv0Sv+5pFSxWLrwrzjGWZPYuR9HwWEozw8JSjnaWt8yz9lv8r8/+o7Lf5X5/9SsA0dOxHe9FyOroOH7vvzLP2WPxX5//AAdlv8r8/wDqVgyYeOxHe9FyHQcP3fV8zpOJdvrjPTTdFS07emvM2DU4b3CvzcfQbZYIO8U/A8CStJpAAEiIAAAAAAAAAAAAAAAAAAMGTABzn2Se70+al+opZdPZJ7vT5qX6ilndR7CK1jvqJeXsiQ9y8iNUMhQ1qk3tnDVuLT056c0WDohxLJut9r2br8aUZKxWLcox0fPc/LouZXuGcXyMdvqZygnzceUoN+WL5G3mdKcy2DhKe2L5SUIqGq8rXMSi5K2beZpVKdNqSck9azWfns8mRubCMbZxg9YRlKMH4YqTS/4NZGTCNiOSTu2y75vcsX6JX/c0zcze5Yv0Sv8AueXD4KV1cZfBdiT+bVFMxivipr/bkfTsC0sJTb7pu1cNrhCNmTJwUlrGuC1skvr7R9xxsOx7a52VyfwetUXBv50ePHpyeTZr+69qXgily0I0jOcIScFBNLNn0vzVrfYnCE5xUpTd3nzaF5az3y8Wdc3XYtGvsa8K8h4kxxf32Njzl8NwlFvvuKa01IY01oKErLRZNedmbaM3ON3pzp+TtmOj8N7hV5uPoNs1OG9xr83D0G2WaHZW4rdTtveAATIAAAAAAAAAAAAAAAAAAAAwAUzprweeRbXKM6IKNbWls3GT99ry0T5FZ7E7PH4f4r/xLT0y7rX/AEf9ivHn1fitWjN04xVl/Zvj8Cw+Iiq027v+vsa/YnZ4/D/Fl/iZ7E7PH4f4sv8AE9wQ67rd1cWS/LWF70jw7E7PH4f4sv8AEwuidnj8P8WX+JsAdd1u6uI/LWF70uJJcWqcI48G4ycMeEXKL1i9NeafgI6Laaa5NPVPwMk+NdrH+jQ9LIs83FSyq0pfzQj2sLBQoRgtStwbJyx1ZSUnKNOQklLdyrnp39e8z4XCK4e+uuq2LvVS3zfkXIhgHWjLPKCb3uz3rWZVKUc0Z2WzNm3PV6m9xPO62S2rZXGOyuPgiaRges0zlKbcpaWbacYwiox0I6Pw3uFXm4+g2zU4Z3CrzcfQbZaYdlbisVO294ABIiAAAAAAAAAAAAAAAAAADBkwAVDpj3Wv+h/qZXSxdMe61/0P9TK8VzG/Pn5eyLHgvkQ8/c3+KYcalS4uTc6lOW5p6N+DyGlVHWUV3nLT7WWLiWLXOGO7LlU1RFKLi5arRc+TNKrh1G5NZMW9yaXVy5vXtdszVw8sv9KVs2uK1eLuRp145H6r3z/4yevalY1OL4sarpQhucY6aOWjfOKZpEp0kf8A9U/mh+lEWaa6Uak0tCb9zdQk3Ti3psvY3+N8WhT7XjOiNrePB7pWShotWtNF8xGdktP8JX+NYfHTH4WN9Fh6WV0tlHCUJ04ylBN2WpbChYv4li6WInCFRpJvMmWXslp/hK/xrB2SU/wlf41hD4fC8i2LlVXZNJ7W4dpPwf8AKPW7geXCO6dNkYrtva2kvqJ9DwujIjwXI1r4j8Raupzt/PAk+yWn+Er/ABrA+ktP8JX+NYVoEug4b9tcFyNXW+O/dlxO3cKsUqKpJbU4Rajq3omu1qzdI7gXxWjzMPQiROayWZHvRbaTYAAMgAAAAAAAAAAAAAAAAAAwZMAFQ6Y91r/of6mV0sXTHutf9H/YrpW8Z9RPy9kWPB/Ihu+7JfjtkZRx9rT0oino09Hy5PykXS/fr54+k+TBqqVMueXY2wp5EMneSfSCxSyZuLTXLmmmvgrvojTBkxUnlyctrb4macMiKjssjX6Y/CxvosPTIrhY+mPwsb6LD0srpdsN8mG5ex8y+IfV1P8AplpwbpQ4RbKEp1y9sxW6DcZdqPfRF4vSHLrmpq22Wj+DKTnCS8Di2TXB5Ux4Xa8iM7K/bK97XLbLXbHR66o1YcU4dU1OrGsnOPOHW2ycE+89NX6AmrtZN85slfJg1Uyf0rW76XnstJ4dMseFeW9iUVOELJQXLbOXb9BAmzxDNnfbO2x6zk9XpySXeS8hrG2MbJJnJWlGc5SjobZ2vgXxWjzMPQiQI7gXxWjzMPQiRPOektMOytwAAJAAAAAAAAAAAAAAAAAAAwzIAIDjvB53yg4uK2x2++18OveRGditvy4fn9Rcgck8FRqScpLO/FnVTxtaEVGLzLwKb2KW/Lr/AD+odit3y6/z+ouQIdXYfZ6vmT6wr7fRFN7FLvl1/n9QfRW35df5/UXI+ZGersO9Xq+Y6wr7VwRy3pzS4W0VvRyjjRi2u09GysFv9kj43X5lfqZUD26CtTSRTMc74mbe03ocTmsV4ukNjsU3Lnu3JLkuemnLwGiAbErHPKbla70ZgADJDUdr4F8Vo8zD0IkCO4F8Vo8zD0IkTzHpLfDsrcAACQAAAAAAAAAAAAAAAAAAAAAAAAAAAMMyACMz+C498lO6uM5qO1NuS97rrpyflZ4di+D4mP2z9ZMmTOU9pB0oN3cVwRC9i+D4mP2z9Y7F8HxMftn6yaAyntMfg0+6uC5EL2L4XiY/en6zD6LYXiY/en6ybAyntH4NPurguR40UxhFQitsYpRil2kl2kewBg2AAAAAAAAAAAAAAAAAAAAAGpxPIlXRbZCDsnCuc4Vrt2SjFtR+t8irdEuNZOTOMpZOFbBxbvxoVTpyceWnJaObfJ6J7ku+WrPqnKqcK59VZKLULNqnsl3ntfJ/MVnF6P5c8ynLy54muOpqLxKbKrLXOO39pKUn73nrtXfANvjfH/a+di1WTqqxrasmdk7WoLfDq9iUm9F8KXzmOGdIY5HELKabKrsaGLCxSqlGelrslGScovwbeRs8T4L12bjZMtkq6K74ShOO5ylZs2tctOWx/aMbgvV588qHVwqniwpUIR2yU4zcnJ6LTTRr7ADVzuJZd2XPEw3VUqYRlfkXQlbpKfOEIQUo89ObbfLkenBeJ5HtmzDy1W74QjdXdSnCF1Um467G24yTWjWrXaMZ/B8hZUsvCsrhbZCFd9WRGc6bYw12SW1qUZrVrXmmj04Lwa2F1mVlWRuy7Yxr/ZxlCiqqLbUa4tt9tttt6sAj7MvPtzcuqi+iivH6naraOs3Oyvc9ZKceWqJfoxxSeViQumoxm3KMtmrg5Qk4uUG/3XpqiNn0QotzMnIyq67o29V1cXu1goQ2yUlyT1enhLLRRCEIwhGMIRSjGMUlGKXaSSAI3pNk31Ytl2Po7KtLHFx3b64tOcUvC47tH4TTzuOSlZg14ri3lPrpSaUtmJGG6UvnbcIryyLDKKaafNNaNPtNMrHRXozPEssnOasio9TixSa6nF3ymoPXv6yXPwRQBvcT4jZDNw6I7eru6/rE1rL3kFKOj73MjOmHHLMe/GqjkUYldqudl2RBTgnBR2rnJaN6vvktxHhk7MzFyIyShj9dvi9d0usgorQ1OkXCci3Ix8jHePvojbFxyFOUJdYortR58trAPjofxi7IV/WTpyK65qFWVjxddd6cdZaJyfOL5ap6ENm9JbVmZVM87DwoU2QhXDIrjKUoyrjNvV2R15tonejnBbqbsjIyJ1O3I6tOvGhKuiCrUknpJtuT3c35EaM+B5sMrJuo9oThkWQsSya7Z2Q2wjDTWLS097qATeVl21YU7YpZN8MdzioR2q6xQ1W2Kb0TfeILolxnIyZxm8rCvg4N20V1TpyaJ6fBalNvk+T3JFhspyJY2xThTlOCXWVw31wmvkwn+75H4SCwOj+XLNqy8ueHvphOMfalNlc7d60/aSnJ8l29F3wC3gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//Z" width="85px">
 					</div>
 
-					<img src="/images/menu1.png" class="menu-icon"
-						onclick="menutoggle()">
+					
 				</div>
 				<div class="row">
 					<div class="col-2">
 
-						<a href="/shopvibes/admin/userlist" class="btn1">User List
-							&#8594</a> <a href="/shopvibes/product" class="btn1">Add Products
-							&#8594</a> <a href="/shopvibes/admin/listofproducts" class="btn1">List
-							of Products &#8594</a>
+						<a href="/ShopVibes/admin/userlist" class="btn1">User List &#8594</a>
+						<a href="/ShopVibes/product" class="btn1">Add Products &#8594</a> 
+						<a href="/ShopVibes/admin/listofproducts" class="btn1">List of Products &#8594</a>
 
 
 					</div>

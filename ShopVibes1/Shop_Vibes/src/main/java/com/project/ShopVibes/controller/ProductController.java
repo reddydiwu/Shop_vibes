@@ -15,7 +15,7 @@ import com.project.ShopVibes.service.ProductService;
 import com.project.ShopVibes.service.ProductServiceImpl;
 
 @Controller
-@RequestMapping("/shopvibes/product")
+@RequestMapping("/product")
 public class ProductController {
 
 	private ProductService productService;
@@ -38,7 +38,7 @@ public class ProductController {
 	@PostMapping
 	public String createProduct(@ModelAttribute("addproduct") ProductDto productDto) {
 		productService.save(productDto);
-		return "redirect:/shopvibes/product?success";
+		return "redirect:/product?success";
 	}
 	
 	@GetMapping("/edit/{id}")
@@ -60,12 +60,12 @@ public class ProductController {
 		existingproduct.setPrice(product.getPrice());
 		existingproduct.setCategory(product.getCategory());
 		productService.editProduct(existingproduct);
-		return "redirect:/shopvibes/admin/listofproducts";
+		return "redirect:/admin/listofproducts";
 	}
 	
 	@GetMapping("/{id}")
 	public String deleteCategory(@PathVariable int id) {
 		productService.deleteProductById(id);
-		return "redirect:/shopvibes/admin/listofproducts";
+		return "redirect:/admin/listofproducts";
 	}
 }

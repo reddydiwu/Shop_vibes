@@ -17,7 +17,7 @@ import com.project.ShopVibes.repository.CartItemRepository;
 import com.project.ShopVibes.service.ShoppingCartService;
 
 @Controller
-@RequestMapping(path="/shopvibes/user")
+@RequestMapping(path="/cust")
 public class CartController {
 
 	@Autowired
@@ -39,7 +39,7 @@ public class CartController {
 	 	}
 		
 		System.out.println("Success");
-		return "redirect:/shopvibes/user/addtocart";
+		return "redirect:/cust/addtocart";
 	}
 
 	@PostMapping("/{id}")
@@ -50,6 +50,6 @@ public class CartController {
 		shoppingCartService.deletecartitembyid(id);
 		
 		System.out.println("After");
-		return "redirect:/shopvibes/user/addtocart";
+		return "redirect:/cust/addtocart";
 	}
 }

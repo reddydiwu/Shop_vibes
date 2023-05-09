@@ -24,6 +24,7 @@ body {
 .navbar-nav li a {
 	font-size: 16px;
 }
+
 </style>
 
 </head>
@@ -46,7 +47,7 @@ body {
 						<li class="nav-item"><a class="navbar-brand" href="register">Register</a></li>
 
 						<li class="nav-item"><a class="navbar-brand" href="#"
-							th:href="@{/shopvibes/}">Home</a></li>
+							th:href="@{/}">Home</a></li>
 					</ul>
 				</th:block>
 
@@ -54,62 +55,82 @@ body {
 		</div>
 	</nav>
 
-
-
-
 	<div class="container p-5">
-		<div class="row">
-			<div class="col-md-6 offset-md-3">
-				<div class="card">
-					<div class="card-header text-center fs-4">Login Page</div>
+	<div class="row">
+		<div class="col-md-6 offset-md-3">
+		
+			<div class="card">
+				<div class="card-header text-center fs-4">Login Page</div>
 
-					<div th:if="${param.error}" class="alert alert-danger">
-						Invalid EmailId & Password</div>
+				<div th:if="${param.error}" class="alert alert-danger">
+					Invalid EmailId & Password
+				</div>
 
-					<div th:if="${param.logout}" class="alert alert-success">
-						Logout Sucessfully</div>
+				<div th:if="${param.logout}" class="alert alert-success">
+					Logout Successfully
+				</div>
 
-					<div class="card-body">
-						<form action="/login" method="post">
-
-							<div class="mb-3">
-								<label>Enter Email</label> <input type="text" name="username"
-									class="form-control">
-							</div>
-
-
-							<!-- 	<div class="mb-3">
-									<label>Enter Password</label> <input type="password"
-										name="password" class="form-control">
-								</div> -->
-
-							<div class="mb-3">
-								<label>Enter Password</label>
-								<div class="input-group">
-									<input type="password" name="password" class="form-control"
-										id="password-field">
-									<button type="button" class="btn btn-default toggle-password"
-										toggle="#password-field">
-										<i class="fa fa-eye"></i>
-									</button>
-								</div>
-							</div>
-							<button class="btn btn-primary col-md-12">Login</button>
-						</form>
-
-						<div class="text-center mt-2">
-							<a href="/shopvibes/forgot" class="text-decoration-none fs-5">Forgot
-								Password</a>
+				<div class="card-body">
+					<form action="login" method="post">
+						<div class="mb-3">
+							<label>Enter Email</label>
+							<input type="text" name="username" class="form-control" id="email-field">
 						</div>
 
+						<div class="mb-3">
+							<label>Enter Password</label>
+							<div class="input-group">
+								<input type="password" name="password" class="form-control" id="password-field">
+								<button type="button" class="btn btn-default toggle-password" toggle="#password-field">
+									<i class="fa fa-eye"></i>
+								</button>
+							</div>
+						</div>
+						<button class="btn btn-primary col-md-12">Login</button>
+					</form>
+
+					<div class="text-center mt-2">
+						<a href="/ShopVibes/forgot" class="text-decoration-none fs-5">Forgot Password</a>
 					</div>
+
+					<div id="animation-container" class="text-center mt-2"></div>
 				</div>
 			</div>
 		</div>
-
 	</div>
+</div>
 
+<script>
+$(document).ready(function() {
+    var emailAnimationDisplayed = false;
+    var passwordAnimationDisplayed = false;
 
+    $('#email-field').on('input', function() {
+        var email = $(this).val().toLowerCase();
+        if (email.length > 0 && !emailAnimationDisplayed) {
+            emailAnimationDisplayed = true;
+            passwordAnimationDisplayed = false; // clear password animation if displayed
+            $('#animation-container').html('<iframe style="border: none" width="300" height="300" src="https://rive.app/s/q6Z1KCrxyk6zvKWxuT8_NA/embed" allowfullscreen></iframe>');
+        } else if (email.length === 0) {
+            emailAnimationDisplayed = false;
+            $('#animation-container').html('');
+        }
+    });
+
+    $('#password-field').on('input', function() {
+        var password = $(this).val();
+        if (password && !passwordAnimationDisplayed) {
+            passwordAnimationDisplayed = true;
+            emailAnimationDisplayed = false; // clear email animation if displayed
+            $('#animation-container').html('<iframe style="border: none" width="300" height="300" src="https://rive.app/s/6mz8YRnyYEuxEb9fGgrStw/embed" allowfullscreen></iframe>');
+        } else if (password.length === 0) {
+            passwordAnimationDisplayed = false;
+            $('#animation-container').html('');
+        }
+    });
+});
+
+</script>
 
 	<script>
 		$(document).on('click', '.toggle-password', function() {

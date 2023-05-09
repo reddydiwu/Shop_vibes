@@ -18,8 +18,8 @@
 		<div class="container">
 			<div class="navbar-header ">
 				
-				<a class="navbar-brand" href="#" th:href="@{/shopvibes/admin/}">Home</a>
-				<a class="navbar-brand" href="#" th:href="@{/shopvibes/admin/listofproducts}">Products</a>
+				<a class="navbar-brand" href="#" th:href="@{/admin/}">Home</a>
+				<a class="navbar-brand" href="#" th:href="@{/admin/listofproducts}">Products</a>
 			</div>
 		</div>
 	</nav>
@@ -39,7 +39,7 @@
 				<h1>Update Product</h1>
 
 				<form
-					th:action="@{/shopvibes/product/edit/{id} (id=${product.id})}"
+					th:action="@{/product/edit/{id} (id=${product.id})}"
 					method="post" th:object="${product}">
 					<div class="form-group">
 						<label class="control-label" for="productName"> Product

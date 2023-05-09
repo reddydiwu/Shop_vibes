@@ -17,7 +17,7 @@ import com.project.ShopVibes.service.CheckoutService;
 
 
 @Controller
-@RequestMapping("/shopvibes/user")
+@RequestMapping("/cust")
 public class CheckoutController {
 
 	
@@ -25,7 +25,7 @@ public class CheckoutController {
 	CheckoutService service;
 	
 	public static final String SUCCESS_URL = "pay/success";
-	public static final String CANCEL_URL = "shopvibes/user/checkout";
+	public static final String CANCEL_URL = "user/checkout";
 	
 	@GetMapping("/checkout")
 	public String home() {
@@ -37,8 +37,8 @@ public class CheckoutController {
 	public String payment(@ModelAttribute("order") Checkout order) {
 		try {
 			Payment payment = service.createPayment(order.getPrice(), order.getCurrency(), order.getMethod(),
-					order.getIntent(), order.getDescription(), "http://localhost:8080/" + CANCEL_URL,
-					"http://localhost:8080/" + SUCCESS_URL);
+					order.getIntent(), order.getDescription(), "http://localhost:9000/" + CANCEL_URL,
+					"http://localhost:9000/" + SUCCESS_URL);
 			for(Links link:payment.getLinks()) {
 				if(link.getRel().equals("approval_url")) {
 					return "redirect:"+link.getHref();

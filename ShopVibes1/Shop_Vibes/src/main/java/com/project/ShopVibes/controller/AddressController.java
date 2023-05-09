@@ -13,7 +13,7 @@ import com.project.ShopVibes.repository.AddressRepository;
 import com.project.ShopVibes.service.AddressServiceImpl;
 
 @Controller
-@RequestMapping("/shopvibes/user")
+@RequestMapping("/cust")
 public class AddressController {
 
 	@Autowired
@@ -36,6 +36,6 @@ public class AddressController {
 	@PostMapping("/address")
 	public String createProduct(@ModelAttribute("address") AddressDto addressDto) {
 		addressService.saveAddress(addressDto);
-		return "redirect:/shopvibes/user/addtocart?success";
+		return "redirect:/cust/addtocart?success";
 	}
 }

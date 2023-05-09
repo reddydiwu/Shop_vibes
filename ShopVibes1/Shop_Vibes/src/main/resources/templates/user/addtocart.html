@@ -282,7 +282,7 @@ tr:nth-child(even) {
 						class="icon-bar"></span>  <span class="icon-bar"></span>  <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" th:href="@{/shopvibes/user/}">Home</a>
+				<a class="navbar-brand" th:href="@{/cust/}">Home</a>
 				
 			</div>
 		</div>
@@ -326,7 +326,7 @@ tr:nth-child(even) {
 						<td class="TotalPrice"
 							th:text="${cart.quantity}*${cart.product.price}"></td>
 						<td>
-							<form th:action="@{/shopvibes/user/{id}(id=${cart.id})}"
+							<form th:action="@{/cust/{id}(id=${cart.id})}"
 								method="post">
 								<button type="submit" class="btn btn-danger">Delete</button>
 							</form>

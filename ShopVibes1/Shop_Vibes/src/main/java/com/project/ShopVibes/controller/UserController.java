@@ -1,10 +1,7 @@
 package com.project.ShopVibes.controller;
 
 import java.security.Principal;
-import java.util.ArrayList;
-import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.project.ShopVibes.model.Address;
-import com.project.ShopVibes.model.Product;
+import com.project.ShopVibes.exceptions.EmailAlreadyExistsException;
 import com.project.ShopVibes.model.UserDtls;
 import com.project.ShopVibes.repository.AddressRepository;
 import com.project.ShopVibes.repository.CartItemRepository;
@@ -29,7 +25,7 @@ import com.project.ShopVibes.repository.UserRepository;
 import com.project.ShopVibes.service.UserService;
 
 @Controller
-@RequestMapping("/shopvibes/user")
+@RequestMapping("/cust")
 public class UserController {
 
 	@Autowired
@@ -102,6 +98,7 @@ public class UserController {
 			
 			if(updatePasswordUser!=null) {
 				session.setAttribute("msg", "Password Change success");
+				return "redirect:/cust/";
 			}else {
 				session.setAttribute("msg", "Something went wrong");
 
@@ -109,10 +106,10 @@ public class UserController {
 			
 		}else {
 			session.setAttribute("msg", "Old Password is incorrect");
-
+			return "redirect:/cust/changePassword";
 		}
 		
-		return "redirect:/shopvibes/user/";
+		return "redirect:/cust/changePassword";
 	}
 	
 	
@@ -123,22 +120,49 @@ public class UserController {
 	}
 	
 	@PostMapping("/edit/{id}")
-	public String updateuser(@PathVariable int id, 
-								@ModelAttribute("user") UserDtls user, 
-								Model model) {
-		//get category from db
-		UserDtls existinguser = userService.getUserById(id);
-		
-		existinguser.setFirstName(user.getFirstName());
-		existinguser.setLastName(user.getLastName());
-		existinguser.setEmail(user.getEmail());
-		existinguser.setPassword(passwordEncoder.encode(user.getPassword()));
-		
-		userService.editUser(existinguser);
-		return "redirect:/shopvibes/signin";
+	public String updateuser(@PathVariable int id, @ModelAttribute("user") UserDtls user, Model model) {
+	    // Get user from db
+	    UserDtls existinguser = userService.getUserById(id);
+	    
+	    // Check if the email already exists in the database
+	    UserDtls userWithSameEmail = userRepo.findByEmail(user.getEmail());
+	    if (userWithSameEmail != null && userWithSameEmail.getId() != id) {
+	        throw new RuntimeException("Email ID already exists");
+	    }
+	    
+	    // Update the user's details
+	    existinguser.setFirstName(user.getFirstName());
+	    existinguser.setLastName(user.getLastName());
+	    existinguser.setEmail(user.getEmail());
+	    existinguser.setPassword(passwordEncoder.encode(user.getPassword()));
+	    
+	    userService.editUser(existinguser);
+	    return "redirect:/signin";
 	}
+
 	
-	
+//	@PostMapping("/edit/{id}")
+//	public String updateuser(@PathVariable int id, @ModelAttribute("user") UserDtls user, Model model) {
+//	    // Get user from db
+//	    UserDtls existinguser = userService.getUserById(id);
+//
+//	    // Check if the email already exists in the database
+//	    UserDtls userWithSameEmail = userRepo.findByEmail(user.getEmail());
+//	    if (userWithSameEmail != null && userWithSameEmail.getId() != id) {
+//	        model.addAttribute("errorMessage", "Email ID already exists");
+//	        return "user/edituser";
+//	    }
+//
+//	    // Update the user's details
+//	    existinguser.setFirstName(user.getFirstName());
+//	    existinguser.setLastName(user.getLastName());
+//	    existinguser.setEmail(user.getEmail());
+//	    existinguser.setPassword(passwordEncoder.encode(user.getPassword()));
+//
+//	    userService.editUser(existinguser);
+//	    return "redirect:/shopvibes/signin";
+//	}
+
 	
 	
 //	@GetMapping("/listofproducts")

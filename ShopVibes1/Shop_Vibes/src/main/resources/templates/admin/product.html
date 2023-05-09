@@ -21,7 +21,7 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#" th:href="@{/shopvibes/admin/}">Home</a>
+				<a class="navbar-brand" href="#" th:href="@{/admin/}">Home</a>
 			</div>
 		</div>
 	</nav>
@@ -41,7 +41,7 @@
 					Invalid EmailId & Password</div>
 				<h1>Add Product</h1>
 
-				<form th:action="@{/shopvibes/product}" method="post"
+				<form th:action="@{/product}" method="post"
 					th:object="${addproduct}">
 					<div class="form-group">
 						<label class="control-label" for="name"> Product Name </label> <input

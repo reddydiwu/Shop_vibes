@@ -22,7 +22,6 @@ import com.project.ShopVibes.service.UserService;
 
 
 @Controller
-@RequestMapping("/shopvibes")
 public class HomeController {
 
 	@Autowired
@@ -100,17 +99,17 @@ public class HomeController {
 
 		if (f) {
 			session.setAttribute("msg", "Email Id already exists");
-			return "redirect:/shopvibes/register";
+			return "redirect:/register";
 		}
 
 		UserDtls userDtls = userService.createUser(user);
 		if (userDtls != null) {
 			session.setAttribute("msg", "Registered successfully");
-			model.addAttribute("redirect:/shopvibes/signin");
+			model.addAttribute("redirect:/signin");
 			return "success";
 		} else {
 			session.setAttribute("msg", "Something went wrong on server");
-			return "redirect:/shopvibes/register";
+			return "redirect:/register";
 		}
 	}
 	
@@ -122,24 +121,47 @@ public class HomeController {
 		return "forgot";
 	}
 	
-	@GetMapping("/resetpassword/{id}")
-	public String reset(@PathVariable int id, Model m) {
-		m.addAttribute("id",id);
-		return "reset_password";
-	}
+	
+//	@PostMapping("/forgot")
+//	public String forgotPassword(@RequestParam String email,HttpSession session) {
+//		UserDtls user =userRepo.findByEmail(email);
+//		
+//		if(user!=null) {
+//			return "redirect:/resetpassword/"+user.getId();
+//		}else {
+//			session.setAttribute("msg", "Invalid Email id");
+//			return "forgot";
+//		}
+//		
+//	}
 	
 	@PostMapping("/forgot")
 	public String forgotPassword(@RequestParam String email,HttpSession session) {
 		UserDtls user =userRepo.findByEmail(email);
 		
 		if(user!=null) {
-			return "redirect:/shopvibes/resetpassword/"+user.getId();
+			return "redirect:/resetpassword?id="+user.getId();
 		}else {
 			session.setAttribute("msg", "Invalid Email id");
 			return "forgot";
 		}
 		
 	}
+	
+
+//	@GetMapping("/resetpassword/{id}")
+//	public String reset(@PathVariable int id, Model m) {
+//		m.addAttribute("id",id);
+//		return "reset_password";
+//	}
+	
+	@GetMapping("/resetpassword")
+	public String reset(@RequestParam int id, Model m) {
+		m.addAttribute("id",id);
+		return "reset_password";
+	}
+	
+	
 	
 	@PostMapping("/changepassword")
 	public String resetpassword(@RequestParam String password,@RequestParam Integer id,HttpSession session) {
@@ -152,10 +174,10 @@ public class HomeController {
 		
 		UserDtls updateUser = userRepo.save(user);
 		
-		if(updateUser!=null)
-		{
-			session.setAttribute("msg", "Password Changed Successfully");
-		}
-		return "redirect:/shopvibes/signin";
+		session.setAttribute("msg", "Password Changed Successfully");
+			
+		
+		System.out.println("Success");
+		return "redirect:/signin";
 	}
 }
