@@ -18,7 +18,25 @@
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
  	
+<style>
+h3{color:White
+}
 
+.dropdown {
+			position: relative;
+			display: inline-block;
+		}
+
+		.dropdown-content {
+			display: none;
+			position: absolute;
+			z-index: 1;
+		}
+
+		.dropdown:hover .dropdown-content {
+			display: block;
+		}
+</style>
 </head>
 <body>
 
@@ -41,14 +59,19 @@
 
 
 						<li class="nav-item">
-						<a class="navbar-brand" href="#" th:href="@{/shopvibes/user/}">Home</a> 
+					<!-- 	<a class="navbar-brand" href="#" th:href="@{/shopvibes/user/}">Home</a> 
 						
 						<a class="navbar-brand" href="#" th:href="@{/shopvibes/about}">About</a> 
-						<a class="navbar-brand" href="#" th:href="@{/shopvibes/contact}">Contact</a> 
-						<a class="navbar-brand" href="#" th:href="@{/shopvibes/user/}">[[${user.firstName}]]</a>
-						<a class="navbar-brand" href="#" th:href="@{/shopvibes/user/changePassword}">ChangePassword</a>
-							<a class="navbar-brand" href="#" th:href="@{/logout}">Logout</a></li>
+						<a class="navbar-brand" href="#" th:href="@{/shopvibes/contact}">Contact</a>  -->
+					
 						
+						<div class="dropdown">
+							<h3 >Welcome [[${user.firstName}]]</h3>
+							<div class="dropdown-content">
+							<a class="navbar-brand" href="#" th:href="@{/shopvibes/user/changePassword}">ChangePassword</a>
+							<a class="navbar-brand" href="#" th:href="@{/logout}">Logout</a></li>
+						</div>
+	</div>
 					<!-- 
 						<a class="navbar-brand" href="#" th:href="@{/category}">AddCategory</a> 
 						<a class="navbar-brand"	href="#" th:href="@{/listofproducts}">Products</a> 
@@ -61,7 +84,7 @@
 		</div>
 	</nav>
  
-	<h3>Welcome [[${user.firstName}]]</h3>
+	
 
 
 	<div class="header">
@@ -77,7 +100,7 @@
 			<div class="row">
 				<div class="col-2">
 					<h2>Best Place for Best Peoples For Best Products</h2>
-					<a href="#" class="btn">Explore Now &#8594</a>
+					<a href="/shopvibes/user/listofproducts" class="btn"><h4>Products &#8594</h4></a>
 				</div>
 				<div class="col-2">
 					<img src="/images/front_img2.jpg">

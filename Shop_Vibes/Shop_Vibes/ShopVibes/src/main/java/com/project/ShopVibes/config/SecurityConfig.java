@@ -8,9 +8,13 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.session.SessionRegistry;
+import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.session.HttpSessionEventPublisher;
 
 @Configuration
 @EnableWebSecurity
@@ -40,16 +44,52 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.authenticationProvider(getDaoAuthProvider());
+		auth.authenticationProvider(getDaoAuthProvider())
+		.inMemoryAuthentication()
+		.withUser("admin").password("{noop}admin").roles("ADMIN")
+        .and()
+        .withUser("user").password("{noop}user").roles("USER");
 	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
-		http.authorizeRequests().antMatchers("/shopvibes/admin/**").hasRole("ADMIN").antMatchers("/shopvibes/user/**").hasRole("USER")
-				.antMatchers("/**").permitAll().and().formLogin().loginPage("/shopvibes/signin").loginProcessingUrl("/login")
-				.successHandler(customSuccessHandler).and().csrf().disable();
-
+		http.sessionManagement()
+		 .sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
+         .and()
+		.authorizeRequests()
+		.antMatchers("/shopvibes/admin/**")
+		.hasRole("ADMIN")
+		.antMatchers("/shopvibes/user/**")
+		.hasRole("USER")
+		.antMatchers("/**")
+		.permitAll()
+		.and()
+		.formLogin()
+		.loginPage("/shopvibes/signin")
+		.loginProcessingUrl("/login")
+		.successHandler(customSuccessHandler)
+		.and()
+		.csrf()
+		.disable()
+		.sessionManagement()
+        .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
+        .maximumSessions(2)
+        .sessionRegistry(sessionRegistry())
+        .and()
+        .invalidSessionUrl("/login?expired")
+        .and()
+    .csrf()
+        .disable();
 	}
+	 @Bean
+	    public HttpSessionEventPublisher httpSessionEventPublisher() {
+	        return new HttpSessionEventPublisher();
+	    }
 
+	 
+	 @Bean
+	 public SessionRegistry sessionRegistry() {
+	     return new SessionRegistryImpl();
+	 }
 }

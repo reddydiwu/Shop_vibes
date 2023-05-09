@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Registration Success</title>
+	<style>
+		body {
+			background-image: url('https://www.shutterstock.com/image-photo/hand-holding-shopping-cart-on-260nw-1721911096.jpg');
+			background-size: cover;
+			background-position: center;
+			font-family: Arial, sans-serif;
+			color: #fff;
+			text-align: center;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			height: 100vh;
+		}
+		h2 {
+		color:black;
+			font-size: 36px;
+			margin-bottom: 20px;
+		}
+		p {
+			font-size: 24px;
+			margin-bottom: 10px;
+		}
+		a {
+			color: #fff;
+			text-decoration: underline;
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<h2>Congratulations You Have Registered Successfully Please Signin And Enjoy Shopping&#128516;</h2>
+		<p>You will be redirected to Sign In page in 5 seconds...</p>
+		<p>If you are not automatically redirected, please click <a href="signin">here</a>.</p>
+	</div>
+	
+	<script type="text/javascript">
+		setTimeout(function () {
+			window.location.replace('signin');
+		}, 5000); // 5 seconds
+	</script>
+</body>
+</html>

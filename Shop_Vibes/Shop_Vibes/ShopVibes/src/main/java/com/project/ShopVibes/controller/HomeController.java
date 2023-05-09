@@ -47,7 +47,7 @@ public class HomeController {
 	
 	@GetMapping("/")
 	public String index() {
-		return "index";
+		return "home";
 	}
 
 	@GetMapping("/signin")
@@ -80,7 +80,7 @@ public class HomeController {
 			}
 		}
 
-		return "redirect:/register";
+		return "redirect:/shopvibes/register";
 	}
 
 	@GetMapping("/forgot")
@@ -99,7 +99,7 @@ public class HomeController {
 		UserDtls user =userRepo.findByEmail(email);
 		
 		if(user!=null) {
-			return "redirect:/resetpassword/"+user.getId();
+			return "redirect:/shopvibes/resetpassword/"+user.getId();
 		}else {
 			session.setAttribute("msg", "Invalid Email id");
 			return "forgot";
@@ -122,6 +122,6 @@ public class HomeController {
 		{
 			session.setAttribute("msg", "Password Changed Successfully");
 		}
-		return "redirect:/signin";
+		return "redirect:/shopvibes/signin";
 	}
 }

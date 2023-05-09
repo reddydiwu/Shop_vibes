@@ -5,17 +5,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-
-
 
 @Entity
 @Table(name="product")
-
 public class Product {
 
 	@Id
@@ -31,44 +25,15 @@ public class Product {
 	@Column(name="image_url")
 	private @NotBlank String imageUrl;
 
-	private @NotNull double price;
+	private double price;
+	private String category;
 
-	//Many to one relationship
-		@ManyToOne
-		@JoinColumn(name= "category_id")
-		Category category;
-	
 	public Product() {
 		super();
 	}
 
-	
-
-//	public Product(Integer id, @NotBlank String productName, @NotBlank String description, @NotBlank String imageUrl,
-//			@NotNull double price) {
-//		super();
-//		this.id = id;
-//		this.productName = productName;
-//		this.description = description;
-//		this.imageUrl = imageUrl;
-//		this.price = price;
-//	}
-
-
-
-	public Product(@NotBlank String productName, @NotBlank String description, double d, @NotBlank String imageUrl,
-			@NotNull double price) {
-		super();
-		this.productName = productName;
-		this.description = description;
-		this.imageUrl = imageUrl;
-		this.price = price;
-	}
-
-
-
 	public Product(Integer id, @NotBlank String productName, @NotBlank String description, @NotBlank String imageUrl,
-			@NotNull double price, Category category) {
+			double price, String category) {
 		super();
 		this.id = id;
 		this.productName = productName;
@@ -78,21 +43,15 @@ public class Product {
 		this.category = category;
 	}
 
-
-
-	public Product(@NotBlank String productName, @NotBlank String description, @NotBlank double price,
-		@NotNull String imageUrl, Category categoryId) {
-	super();
-	this.productName = productName;
-	this.description = description;
-	this.price = price;
-	this.imageUrl = imageUrl;
-	
-	
-	this.category = categoryId;
-}
-
-
+	public Product(@NotBlank String productName, @NotBlank String description, @NotBlank String imageUrl, double price,
+			String category) {
+		super();
+		this.productName = productName;
+		this.description = description;
+		this.imageUrl = imageUrl;
+		this.price = price;
+		this.category = category;
+	}
 
 	public Integer getId() {
 		return id;
@@ -102,7 +61,13 @@ public class Product {
 		this.id = id;
 	}
 
-	
+	public String getProductName() {
+		return productName;
+	}
+
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
 
 	public String getDescription() {
 		return description;
@@ -120,14 +85,6 @@ public class Product {
 		this.imageUrl = imageUrl;
 	}
 
-	public String getProductName() {
-		return productName;
-	}
-
-	public void setProductName(String productName) {
-		this.productName = productName;
-	}
-
 	public double getPrice() {
 		return price;
 	}
@@ -136,18 +93,16 @@ public class Product {
 		this.price = price;
 	}
 
-
-
-	public Category getCategory() {
+	public String getCategory() {
 		return category;
 	}
 
-
-
-	public void setCategory(Category category) {
+	public void setCategory(String category) {
 		this.category = category;
 	}
+
 	
+
 	
 	
 }

@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width-device-width, initial-scale=1.0">
+<title>ShopVibes</title>
+
+<style>
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body{
+	font-family: 'Poppins', sans-serif;
+}
+.navbar{
+	display: flex;
+	align-items: center;
+	padding: 20px;
+}
+nav{
+	flex: 1;
+	text-align: right;
+}
+nav ul{
+	display: inline-block;
+	list-style-type: none;
+}
+nav ul li{
+	display: inline-block;
+	margin-right: 20px;
+}
+a{
+	text-decoration: none;
+	color: #555;
+}
+p{
+	color: #555;
+}
+my-img {
+	width: 200px;
+	height: 250px;
+}
+.container{
+	max-width: 1300px;
+	margin: auto;
+	padding-left: 25px;
+	padding-right: 25px;
+}
+.row{
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+.col-2{
+	flex-basis: 50%;
+	min-width: 300px;
+}
+.col-2 img{
+	max-width: 100%;
+	border: 100%;
+	padding: 50px 0;
+	width: 500px;
+}
+.col-2 h1{
+	font-size: 50px;
+	line-height: 60px;
+	margin: 25px 0;
+}
+.btn{
+	display: inline-block;
+	background: #ff523b;
+	color: #fff;
+	padding: 8px 30px;
+	margin: 30px 0;
+	border-radius: 30px;
+	transition: background 0.5;
+}
+.btn:hover{
+	background: #563434;
+}
+.header{
+	background: #d4d3cd;
+}
+.header{
+	margin-top: 0px;
+}
+.categories{
+	margin: 70px 0;
+}
+.col-3{
+	flex-basis: 30%;
+	min-width: 250px;
+	margin-bottom: 30px;
+}
+.col-3 img{
+	width: 100%
+}
+.small-container{
+	max-width: 1080px;
+	margin: auto;
+	padding-left: 25px;
+	padding-right: 25px;
+}
+.col-4{
+	flex-basis: 25%;
+	padding: 10px;
+	min-width: 20px;
+	margin-bottom: 50px;
+	transition: transform 0.5s;
+}
+.col-4 img{
+	width: 50%;
+}
+.title{
+	text-align: center;
+	margin: 0 auto 80px;
+	position: relative;
+	line-height: 60px;
+	color: #555;
+}
+.title:after{
+	content: '';
+	background: #ff523b;
+	widows: 80px;
+	height: 5px;
+	border-radius: 5px;
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	transform: translateX(-50%); 
+}
+.col-4:hover{
+	transform: translateY(-50px);
+}
+.offer{
+	margin-top: 80px;
+	padding: 30px;
+}
+.col-2 .offer-img{
+	padding: 50px;
+}
+.small{
+	color: #555;
+}
+.brands{
+	margin: 100px;
+}
+col-5{
+	width: 160px;
+}
+.col-5 img{
+	width: 50%;
+	cursor: pointer;
+	filter: grayscale(100%); 
+}
+.col-5 img:hover{
+	filter: grayscale(100%);
+}
+.footer{
+	background: #000;
+	color: #8a8a8a;
+	font-size: 14px;
+	padding: 60px 0 20px;
+}
+.footer p{
+	color: #8a8a8a;
+}
+.footer h3{
+	color: #fff;
+	margin-bottom: 20px;
+}
+.footer-col-1, .footer-col-2, .footer-col-3, .footer-col-4{
+	min-width: 250px;
+	margin-bottom: 20px;
+}
+.footer-col-1{
+	flex-basis: 30%
+}
+.footer-col-2{
+	flex: 1;
+	text-align: center; 
+}
+.footer-col-2 img{
+	width: 180px;
+	margin-bottom: 20px;
+}
+.footer-col-3, .footer-col-4{
+	flex-basis: 12%;
+	text-align: center;
+}
+ul{
+	list-style-type: none;
+}
+.footer hr{
+	border: none;
+	background: #b5b5b5;
+	height: 1px;
+	margin: 20px 0;
+}
+.copyright{
+	text-align: center;
+}
+.copyrigth{
+	text-align: center;
+}
+.menu-icon{
+	width: 28px;
+	margin-left: 20px;
+	display: none;
+}
+@media only screen and (max-width: 800px){
+	nav ul{
+		position: absolute;
+		top: 70px;
+		left: 0;
+		background: #333;
+		width: 100%;
+		overflow: hidden;
+		transition: max-height 0.5s;
+	}
+	nav ul il{
+		display: block;
+		margin-right: 50px;
+		margin-top: 10px;
+		margin-bottom: 10px;  
+	}
+	nav ul il a{
+		color: #fff;
+	}
+	.menu-icon{
+		display: block;
+		cursor: pointer;
+	}
+}
+
+/*--- products page --*/
+.Productheader{
+	background-color: white; 
+}
+.row-2{
+	justify-content: space-between;
+	margin: 100px auto 50px;
+}
+select{
+	border: 1px solid #ff523b;
+	padding: 5px;
+}
+select:focus{
+	outline: none;
+}
+.page-btn{
+	margin: 0 auto 80px; 
+}
+.page-btn span{
+	display: inline-block;
+	border: 1px solid #ff523b;
+	margin-left: 10px;
+	width: 40px;
+	height: 40px;
+	text-align: center;
+	line-height: 40px;
+	text-align: center;
+	line-height: 40px;
+	cursor: pointer;  
+}
+.page-btn span:hover{
+	background: #ff523b;
+	color: #fff;
+}
+@media only screen and (max-width: 800px){
+	.row{
+		text-align: center;
+	}
+	.col-2, .col-3, .col-4{
+		flex-basis: 100%;
+	}
+}
+
+
+.navbar-nav a.navbar-brand, .navbar-nav a.nav-link {
+	font-size: 16px; /* Change this value as needed */
+}
+/* Navbar styles */
+.navbar {
+	background-color: #333;
+	overflow: hidden;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 60px;
+}
+
+/* Logo styles */
+.navbar-brand {
+	color: #fff;
+	font-size: 24px;
+	font-weight: bold;
+	padding-left: 20px;
+}
+
+/* Navigation links styles */
+.navbar-nav {
+	display: flex;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.navbar-nav li {
+	margin: 0;
+}
+
+.navbar-nav a {
+	display: block;
+	color: #fff;
+	text-align: center;
+	padding: 20px;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+.navbar-nav a:hover {
+	background-color: #555;
+}
+
+/* Right-aligned navigation links */
+.navbar-nav.right {
+	margin-right: 20px;
+}
+
+/* Responsive styles */
+@media only screen and (max-width: 600px) {
+	.navbar {
+		flex-direction: column;
+		height: auto;
+	}
+	.navbar-brand {
+		padding: 20px;
+	}
+	.navbar-nav {
+		width: 100%;
+		flex-direction: column;
+	}
+	.navbar-nav a {
+		border-bottom: 1px solid #fff;
+	}
+	.navbar-nav.right {
+		margin-right: 0;
+		margin-top: 20px;
+	}
+}
+</style>
+</head>
+<body>
+
+
+
+	<nav class="navbar">
+		<a class="navbar-brand" href="#">ShopVibes</a>
+
+
+		<ul class="navbar-nav right">
+			<li class="nav-item"><a class="nav-link" href="register">Register</a></li>
+			<li class="nav-item"><a class="navbar-brand" href="#"
+				th:href="@{signin}">Login</a></li>
+		</ul>
+	</nav>
+
+
+	<div class="header">
+		<div class="container">
+
+			<div class="logo">
+				<img src="data:image/jpeg;base64,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" width="85px">
+			</div>
+
+			<div class="row">
+				<div class="col-2">
+					<h2>Best Place for Best Peoples For Best Products</h2>
+
+				</div>	
+				<div class="col-2">
+					<img src="https://boutiquestoredesign.com/wp-content/uploads/2019/11/Garment-Kiosk-Shop-Design-Clothing-Garment-Shop-Hanging-Clothes-Store-768x512.jpg">
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	
+	<!-- Featured Categories -->
+	<div class="categories">
+		<h2 class="title">Latest Product</h2>
+
+		<div class="small-container">
+			<div class="row">
+				<div class="col-3">
+					<img src="https://www.uniqlo.com/in/en/news/topics/2021051701/img/mimg_1_m.jpg">
+				</div>
+				<div class="col-3">
+					<img src="https://api.powerlook.in/pub/media/catalog/product//d/p/dp_1225.jpg">
+				</div>
+				<div class="col-3">
+					<img src="https://rukminim1.flixcart.com/image/832/832/l1v1uvk0/dress/u/8/e/l-maxi-01-fabflee-original-imagdc44kn6s8dge.jpeg?q=70">
+				</div>
+			</div>
+		</div>
+		<!-- featured Products -->
+		<div class="small-container">
+			<h2 class="title">Featured Products</h2>
+			<div class="row">
+				<div class="col-4">
+					<img src="https://5.imimg.com/data5/SELLER/Default/2021/1/PX/ST/NF/54776154/love-heart-red-couple-t-shirt-1-removebg-preview-500x500.png">
+					<h4>Red Printed T-Shirt</h4>
+					<p>Rs: 50</p>
+				</div>
+				<div class="col-4">
+					<img src="https://images.meesho.com/images/products/119544768/7pyu4_512.jpg">
+					<h4>Cassual Shoes</h4>
+					<p>Rs: 25</p>
+				</div>
+				<div class="col-4">
+					<img src="https://images.philips.com/is/image/philipsconsumer/16223389e358476a91d7ae790094206e?$jpglarge$&wid=960">
+					<h4>Philips Trimmer</h4>
+					<p>Rs: 150</p>
+				</div>
+				<div class="col-4">
+					<img src="https://www.jiomart.com/images/product/420x420/rv1yzutjrr/remote-control-car-gesture-sensing-rc-stunt-car-2-4ghz-crawler-12-5mph-with-rechargeable-batteries-drift-cars-for-boys-teens-adults-yellow-product-images-orv1yzutjrr-p591153903-0-202202271829.jpg">
+					<h4>Remote Car</h4>
+					<p>Rs: 500</p>
+				</div>
+			</div>
+		</div>
+		<!-- offers -->
+		<div class="offer">
+			<div clas="small-cointainer">
+				<div class="row">
+					<div class="col-2">
+						<img src="https://images.hindustantimes.com/tech/img/2020/07/16/1600x900/Xiaomi_mi_band_5_official_1591866173146_1591866178162_1594880111671.jpg" class="offer-img">
+					</div>
+					<div class="col-2">
+						<p>Exclusively Available on ShopVibes</p>
+						<h1>Smart Band 4</h1>
+						<small>The Mi Smart Band 4 features a 39.9% larger Amoled
+							color full-touch display with adjustable brightness, so
+							everything is clear as can be.</small>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- footer -->
+		<div class="footer">
+			<div class="container">
+				<div class="row">
+
+					
+
+
+					<div class="footer-col-1">
+						<h3>Useful Links</h3>
+						<ul>
+							<li>Coupons</li>
+							<li>Blog Post</li>
+							<li>Return policy</li>
+							<li>Join Affilate</li>
+						</ul>
+					</div>
+					<div class="footer-col-4">
+						<h3>Follow Us on</h3>
+						<ul>
+							<li>Facebook</li>
+							<li>Twitter</li>
+							<li>Instagram</li>
+							<li>YouTube</li>
+						</ul>
+					</div>
+					<hr>
+					<p class="copyright">&#169; 2023 - ShopVibes</p>
+				</div>
+			</div>
+		</div>
+		
+</body>
+</html>

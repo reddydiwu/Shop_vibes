@@ -21,6 +21,9 @@ public class UserServiceImpl implements UserService {
 	public UserDtls createUser(UserDtls user) {
 
 		user.setPassword(passwordEncode.encode(user.getPassword()));
+//		user.setPassword(user.getPassword());
+
+		System.out.println(user.getPassword());
 		user.setRole("ROLE_USER");
 
 		return userRepo.save(user);
@@ -30,6 +33,12 @@ public class UserServiceImpl implements UserService {
 	public boolean checkEmail(String email) {
 
 		return userRepo.existsByEmail(email);
+	}
+
+	@Override
+	public UserDtls getUserById(Integer userId) {
+		
+		return userRepo.findById(userId).get();
 	}
 
 }
